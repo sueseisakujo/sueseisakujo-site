@@ -17,10 +17,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --black: #0f0f0f;
+      --black: #2a2520;
       --white: #fafaf8;
-      --gray: #888;
-      --light: #f0efed;
+      --gray: #999;
+      --light: #f4f1ed;
       --accent: #c8622a;
       --serif: 'Shippori Mincho', Georgia, serif;
       --sans: 'Noto Sans JP', sans-serif;
@@ -39,10 +39,10 @@
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 48px; height: 60px;
-      background: rgba(250,250,248,0.95);
+      padding: 0 48px; height: 64px;
+      background: rgba(250,250,248,0.97);
       backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(0,0,0,0.08);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
     }
     .nav-logo img { height: 36px; width: auto; display: block; }
     .nav-links { display: flex; list-style: none; gap: 0; }
@@ -183,7 +183,7 @@
 
     /* ── SERVICES ── */
     .services {
-      background: var(--black);
+      background: #2a2520;
       padding: 120px 80px;
     }
     .services .section-label { color: rgba(255,255,255,0.4); }
@@ -195,12 +195,12 @@
       margin-top: 60px;
     }
     .service-item {
-      background: var(--black);
+      background: #2a2520;
       padding: 48px 36px;
       border-bottom: 2px solid transparent;
       transition: border-color 0.3s, background 0.3s;
     }
-    .service-item:hover { border-color: var(--accent); background: #1a1a1a; }
+    .service-item:hover { border-color: var(--accent); background: #332e28; }
     .service-num {
       font-family: var(--serif); font-size: 11px;
       color: var(--accent); letter-spacing: 0.2em;
@@ -304,7 +304,7 @@
 
     /* ── CONTACT ── */
     .contact {
-      background: var(--black); padding: 120px 80px;
+      background: #2a2520; padding: 120px 80px;
       display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
     }
     .contact .section-label { color: rgba(255,255,255,0.4); }
@@ -354,7 +354,7 @@
 
     /* ── FOOTER ── */
     footer {
-      background: #080808; padding: 48px 80px;
+      background: #1e1a16; padding: 48px 80px;
       display: flex; align-items: center; justify-content: space-between;
     }
     .footer-logo img { height: 28px; filter: brightness(0) invert(1); opacity: 0.5; }
@@ -394,7 +394,7 @@
 <body>
 
 <nav>
-  <a href="index.html" class="nav-logo"><img src="images/logo.png" alt="スエ製作所"></a>
+  <a href="index.html" class="nav-logo"><img src="https://static.wixstatic.com/media/7cabd4_553905c9178440c389e0c285dbb5fe16~mv2.png" alt="スエ製作所"></a>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="shop.html">Shop</a></li>
@@ -486,6 +486,13 @@
     <p class="section-body">
       既存の建物をしっかりとモデリング。現在の性能を評価し、改善点を探る。神戸地震動を再現し、改修前・改修後の性能差を数値で確認します。
     </p>
+  </div>
+  <!-- wall stat動画 -->
+  <div style="margin-bottom:60px;">
+    <div style="font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);margin-bottom:12px;">神戸地震動を再現 — 奥：改修後　手前：改修前</div>
+    <div style="position:relative;aspect-ratio:16/9;width:100%;">
+      <iframe src="https://www.youtube.com/embed/B1csPc1JMrw" title="wall statによる検証" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+    </div>
   </div>
   <div class="perf-imgs">
     <div class="perf-img-wrap">
@@ -621,7 +628,7 @@
 </section>
 
 <footer>
-  <div class="footer-logo"><img src="images/logo.png" alt="スエ製作所"></div>
+  <div class="footer-logo"><img src="https://static.wixstatic.com/media/7cabd4_553905c9178440c389e0c285dbb5fe16~mv2.png" alt="スエ製作所"></div>
   <div class="footer-links">
     <a href="shop.html">Shop</a>
     <a href="about.html">About</a>
