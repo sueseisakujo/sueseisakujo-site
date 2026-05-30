@@ -40,8 +40,9 @@ footer { background: #333; color: #ccc; padding: 40px 20px 24px; }
 .btn-submit { width: 100%; padding: 14px; background: #333; color: #fff; border: none; font-family: inherit; font-size: 14px; cursor: pointer; border-radius: 2px; transition: background .2s; margin-top: 6px; }
 .btn-submit:hover { background: #e07044; }
 @media (max-width: 680px) {
-  nav { padding: 0 16px; }
-  .nav-links { display: none; }
+  nav { padding: 8px 10px; height: auto; flex-wrap: wrap; }
+  .nav-links { display: flex; flex-wrap: wrap; width: 100%; border-top: 1px solid #eee; padding: 6px 0; }
+  .nav-links a { padding: 4px 8px; line-height: 2; font-size: 12px; }
   .footer-inner { grid-template-columns: 1fr; gap: 24px; }
   .form-row { grid-template-columns: 1fr; }
 }
