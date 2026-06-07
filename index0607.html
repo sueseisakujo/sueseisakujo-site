@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>スエ製作所 | セルフリノベーションを大工×建築士がオンラインサポート【全国対応】</title>
+  <meta name="description" content="大工10年×建築士のプロがオンラインでサポート。耐震補強・断熱改修のセルフリノベーションを全国対応でご提案。3Dモデリングで性能を数値化します。">
+  <meta name="robots" content="index, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans JP', sans-serif; font-weight: 300; color: #2c2c2c; background: #fff; -webkit-font-smoothing: antialiased; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: #fff; border-bottom: 1px solid #e8e8e8;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px; height: 60px;
+    }
+    .logo img { height: 36px; display: block; }
+    .nav-links { display: flex; list-style: none; }
+    .nav-links a { display: block; padding: 0 16px; line-height: 60px; font-size: 12px; text-decoration: none; color: #666; transition: color .2s; }
+    .nav-links a:hover { color: #e07044; }
+
+    /* HERO with image map */
+    .hero-wrap { position: relative; overflow: hidden; }
+    .hero-wrap img.hero-img { width: 100%; display: block; max-height: 600px; object-fit: cover; object-position: center; }
+
+    /* クリッカブルエリア（透明ボタン） */
+    .hero-wrap { position: relative; }
+    .hotspot {
+      position: absolute;
+      cursor: pointer;
+      padding: 8px 12px;
+      border-radius: 2px;
+      transition: background 0.2s;
+      text-decoration: none;
+    }
+    .hotspot:hover { background: rgba(224,112,68,0.15); outline: 1px solid rgba(224,112,68,0.5); }
+    .hotspot-label {
+      font-size: 13px; color: #fff; font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 300; letter-spacing: 0.04em; text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+      display: block;
+    }
+    .hotspot-sub {
+      font-size: 11px; color: rgba(255,255,255,0.75);
+      text-shadow: 0 1px 3px rgba(0,0,0,0.5); display: block; margin-top: 2px;
+    }
+    /* 暗い背景のテキストは黒 */
+    .hotspot.dark .hotspot-label { color: #1a1a1a; text-shadow: none; }
+    .hotspot.dark .hotspot-sub { color: #444; text-shadow: none; }
+
+    .hero-text { padding: 40px 40px 48px; border-bottom: 1px solid #e8e8e8; }
+    .hero-text h1 { font-family: 'Noto Serif JP', serif; font-size: 26px; font-weight: 300; letter-spacing: 0.06em; color: #2c2c2c; margin-bottom: 16px; line-height: 1.7; }
+    .hero-text p { font-size: 14px; line-height: 2.1; color: #555; max-width: 640px; margin-bottom: 24px; }
+    .btn-primary { display: inline-block; background: #2c2c2c; color: #fff; padding: 11px 28px; font-size: 13px; text-decoration: none; letter-spacing: 0.06em; transition: background .2s; }
+    .btn-primary:hover { background: #e07044; }
+
+    .wallstat { padding: 40px; background: #f2f0ed; border-bottom: 1px solid #e8e8e8; text-align: center; }
+    .wallstat h2 { font-family: 'Noto Serif JP', serif; font-size: 20px; font-weight: 300; letter-spacing: 0.06em; margin-bottom: 8px; }
+    .wallstat p { font-size: 13px; color: #888; }
+
+    .section { padding: 64px 40px; }
+    .section.gray { background: #f9f9f9; }
+    .section-inner { max-width: 900px; margin: 0 auto; }
+    h2 { font-family: 'Noto Serif JP', serif; font-size: 22px; font-weight: 300; letter-spacing: 0.06em; color: #2c2c2c; margin-bottom: 20px; line-height: 1.7; }
+    p { font-size: 14px; line-height: 2.1; color: #555; }
+
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 28px 0; }
+    .grid2 img { width: 100%; display: block; }
+    .caption { font-size: 12px; color: #888; text-align: center; margin-top: 8px; }
+    .heat-block { margin-bottom: 18px; }
+    .heat-label { font-size: 12px; color: #888; margin-bottom: 8px; }
+    .heat-block img { width: 100%; display: block; }
+    .madori-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 24px 0; }
+    .madori-item { text-align: center; }
+    .madori-tag { display: inline-block; font-size: 11px; border: 1px solid #ccc; padding: 3px 12px; color: #666; margin-bottom: 10px; }
+    .madori-item img { width: 100%; display: block; margin-bottom: 8px; }
+    .madori-item p { font-size: 12px; color: #777; line-height: 1.7; }
+
+    .service-list { margin: 28px 0; }
+    .service-item { padding: 24px 0; border-bottom: 1px solid #e8e8e8; display: grid; grid-template-columns: 36px 1fr; gap: 16px; align-items: start; }
+    .service-item:first-child { border-top: 1px solid #e8e8e8; }
+    .service-num { font-size: 12px; color: #e07044; padding-top: 2px; }
+    .service-item h3 { font-size: 15px; font-weight: 400; color: #2c2c2c; margin-bottom: 6px; }
+    .service-item p { font-size: 13px; color: #666; line-height: 1.9; }
+
+    .worry-list { list-style: none; margin: 20px 0; }
+    .worry-list li { padding: 15px 0 15px 18px; border-bottom: 1px solid #e8e8e8; font-size: 14px; color: #444; line-height: 1.8; position: relative; }
+    .worry-list li:first-child { border-top: 1px solid #e8e8e8; }
+    .worry-list li::before { content: ''; position: absolute; left: 0; top: 23px; width: 6px; height: 6px; background: #e07044; border-radius: 50%; }
+
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; margin-top: 36px; }
+    .contact-row { padding: 13px 0; border-bottom: 1px solid #e8e8e8; display: flex; gap: 14px; }
+    .contact-row:first-child { border-top: 1px solid #e8e8e8; }
+    .c-key { font-size: 11px; color: #e07044; width: 44px; flex-shrink: 0; letter-spacing: 0.1em; padding-top: 1px; }
+    .c-val { font-size: 13px; color: #555; }
+    .c-val a { color: #555; text-decoration: none; }
+    .line-btn { display: inline-flex; align-items: center; gap: 8px; background: #06C755; color: #fff; padding: 11px 20px; font-size: 13px; text-decoration: none; margin-top: 18px; transition: opacity .2s; }
+    .line-btn:hover { opacity: .85; }
+    .form-group { margin-bottom: 14px; }
+    .form-group label { display: block; font-size: 11px; color: #999; margin-bottom: 5px; letter-spacing: 0.1em; }
+    .form-group input, .form-group textarea { width: 100%; padding: 9px 11px; border: 1px solid #ddd; background: #fafafa; font-family: inherit; font-size: 13px; color: #333; outline: none; transition: border-color .2s; }
+    .form-group input:focus, .form-group textarea:focus { border-color: #e07044; background: #fff; }
+    .form-group textarea { height: 100px; resize: vertical; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .btn-submit { background: #2c2c2c; color: #fff; border: none; padding: 11px 24px; font-family: inherit; font-size: 13px; letter-spacing: 0.06em; cursor: pointer; margin-top: 4px; transition: background .2s; }
+    .btn-submit:hover { background: #e07044; }
+
+    footer { background: #2c2c2c; color: #aaa; padding: 36px 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .footer-logo img { height: 26px; filter: brightness(0) invert(1); opacity: .35; }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-links a { font-size: 12px; color: #888; text-decoration: none; transition: color .2s; }
+    .footer-links a:hover { color: #e07044; }
+    .footer-copy { font-size: 11px; color: #666; }
+
+    @media (max-width: 720px) {
+      nav { padding: 0 16px; }
+      .nav-links { display: none; }
+      .section { padding: 48px 20px; }
+      .hero-text { padding: 28px 20px; }
+      .wallstat { padding: 32px 20px; }
+      .grid2, .madori-grid, .contact-grid, .form-row { grid-template-columns: 1fr; }
+      footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
+      .hotspot { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">
+    <img src="https://static.wixstatic.com/media/7cabd4_553905c9178440c389e0c285dbb5fe16~mv2.png" alt="スエ製作所">
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">HOME</a></li>
+    <li><a href="shop.html">SHOP</a></li>
+    <li><a href="about.html">自己紹介</a></li>
+    <li><a href="contact.html">お問い合わせ</a></li>
+    <li><a href="プリンター.html">3Dプリンター製作</a></li>
+  </ul>
+</nav>
+
+<!-- HERO with hotspots -->
+<div class="hero-wrap">
+  <img class="hero-img" src="IMG_0098.JPG" alt="スエ製作所 施工写真" usemap="#heromap">
+
+  <!-- 各テキストの位置にリンクを設置 -->
+  <!-- 画像は1920x1080、表示幅に応じてスケール -->
+  <a class="hotspot" href="room-cove.html"
+     style="left:calc(840/1920*100% - 60px); top:calc(108/1080*100% - 16px);">
+    <span class="hotspot-label">コーブ照明</span>
+    <span class="hotspot-sub">Cove Lighting</span>
+  </a>
+
+  <a class="hotspot" href="room-hokusai.html"
+     style="left:calc(396/1920*100% - 100px); top:calc(437/1080*100% - 16px);">
+    <span class="hotspot-label">葛飾北斎「神奈川県沖浪裏」</span>
+    <span class="hotspot-sub">3Dプリンター製 組子アート</span>
+  </a>
+
+  <a class="hotspot" href="room-sash.html"
+     style="left:calc(1290/1920*100% - 80px); top:calc(384/1080*100% - 16px);">
+    <span class="hotspot-label">大開口トリプルサッシ</span>
+    <span class="hotspot-sub">Triple-glazed Sliding Door</span>
+  </a>
+
+  <a class="hotspot dark" href="room-table.html"
+     style="left:calc(852/1920*100% - 80px); top:calc(785/1080*100% - 16px);">
+    <span class="hotspot-label">壁一体タイルテーブル</span>
+    <span class="hotspot-sub">Built-in Tile Table</span>
+  </a>
+
+  <a class="hotspot" href="room-desk.html"
+     style="left:calc(1620/1920*100% - 60px); top:calc(528/1080*100% - 16px);">
+    <span class="hotspot-label">柱無しデスク</span>
+    <span class="hotspot-sub">Pillar-free Desk</span>
+  </a>
+
+  <a class="hotspot dark" href="room-ac.html"
+     style="left:calc(624/1920*100% - 60px); top:calc(852/1080*100% - 16px);">
+    <span class="hotspot-label">床上エアコン</span>
+    <span class="hotspot-sub">Floor-level Air Conditioning</span>
+  </a>
+</div>
+
+<div class="hero-text">
+  <h1>大工✕建築士が、<br>リノベーションをオンラインでサポートします。</h1>
+  <p>耐震補強から断熱改修まで、本格的なセルフリノベーションをお考えの方へ。3Dモデリングで性能を数値化し、予算と住まい方に合ったプランをご提案します。施工中もZOOMや写真でサポート。全国対応。</p>
+  <a href="#contact" class="btn-primary">まずは相談する</a>
+</div>
+
+<div class="wallstat">
+  <h2>wall statによる検証</h2>
+  <p>神戸地震動を再現　　奥：改修後　手前：改修前</p>
+</div>
+
+<section class="section" id="services">
+  <div class="section-inner">
+    <h2>性能は、数値から。</h2>
+    <p>既存の建物をしっかりとモデリング。現在の性能を評価し、改善点を探る。</p>
+    <div style="position:relative;aspect-ratio:16/9;margin:28px 0;">
+      <iframe src="https://www.youtube.com/embed/B1csPc1JMrw" title="wall statによる検証" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;"></iframe>
+    </div>
+    <div class="grid2">
+      <div>
+        <img src="https://static.wixstatic.com/media/7cabd4_3c40cbcd4d9c4c739bccdecce78c515b~mv2.jpg" alt="実際の写真">
+        <div class="caption">実際の写真</div>
+      </div>
+      <div>
+        <img src="https://static.wixstatic.com/media/7cabd4_35c9f9db656f4b5aad35250d8f3043c2~mv2.jpg" alt="モデリング">
+        <div class="caption">モデリングした写真</div>
+      </div>
+    </div>
+    <h2 style="margin-top:40px;">購入前に、しっかりシミュレーション</h2>
+    <p>既存のモデルをもとに、耐震・断熱レベルが上がるようにプランを作成。</p>
+    <div style="margin-top:24px;">
+      <div class="heat-block">
+        <div class="heat-label">リフォーム前の断熱性能</div>
+        <img src="https://static.wixstatic.com/media/7cabd4_c91a35f02daf46e3a37e7d53364f0ae3~mv2.png" alt="断熱前">
+      </div>
+      <div class="heat-block">
+        <div class="heat-label">リフォーム後の断熱性能（断熱性能がおよそ2倍になっている）</div>
+        <img src="https://static.wixstatic.com/media/7cabd4_c525d78516004f6abfdde491f584c356~mv2.png" alt="断熱後">
+      </div>
+    </div>
+    <h2 style="margin-top:40px;">間取りを変えるだけで、強くなる。</h2>
+    <div class="madori-grid">
+      <div class="madori-item">
+        <div class="madori-tag">リフォーム前</div>
+        <img src="https://static.wixstatic.com/media/7cabd4_505b537f43424cb8b97e0def630521e0~mv2.png" alt="耐震前">
+        <p>あみだくじが複雑。（力の流れ方が複雑）</p>
+      </div>
+      <div class="madori-item">
+        <div class="madori-tag" style="background:#2c2c2c;color:#fff;border-color:#2c2c2c;">リフォーム後</div>
+        <img src="https://static.wixstatic.com/media/7cabd4_c91487cabdca4db79d03470b488b58b3~mv2.png" alt="耐震後">
+        <p>あみだくじがスッキリしている。（力の流れ方がスムーズ）</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section gray">
+  <div class="section-inner">
+    <h2>住宅の改修プランを作成します。</h2>
+    <p>今後の住まい方や、予算に合わせてご提案します。一般ユーザーの方の需要を見込んでのサービスですので、お気軽にお声掛け下さい。</p>
+    <div class="service-list">
+      <div class="service-item">
+        <div class="service-num">01</div>
+        <div>
+          <h3>改修プラン作成</h3>
+          <p>耐震・断熱性能を数値でシミュレーションし、予算に合ったプランをご提案します。</p>
+        </div>
+      </div>
+      <div class="service-item">
+        <div class="service-num">02</div>
+        <div>
+          <h3>オンライン施工サポート</h3>
+          <p>ZOOMや動画・写真などに指示を書き込み、施工方法をサポートします。</p>
+        </div>
+      </div>
+      <div class="service-item">
+        <div class="service-num">03</div>
+        <div>
+          <h3>物件の耐震・断熱チェック</h3>
+          <p>購入前の物件の性能確認もお気軽にご相談ください。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-inner">
+    <h2>こんなお悩みありませんか？</h2>
+    <ul class="worry-list">
+      <li>気になる物件があるけど、耐震性が気になる...。</li>
+      <li>断熱性能が気になるけど、あまりお金をかけたくない...。</li>
+      <li>セルフリノベーションをやりたいけど、できるのかなぁ...。</li>
+      <li>この柱を抜きたいけど大丈夫かなぁ。</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section gray" id="about">
+  <div class="section-inner">
+    <h2>スエ製作所について</h2>
+    <p>私は約10年間大工として働いていました。作業中の事故により障害を負ってしまいました。その経験を活かし、いまの事業に至っています。<br><br>大工の経験と、建築士としての専門知識で、おしゃれだけではないこれからのリノベーションをご提案します。<br><br>また、手が不自由な方に3Dプリンターで、自助具も製作しております。お気軽にご相談ください。</p>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="section-inner">
+    <h2>お問い合わせ</h2>
+    <p>ご興味をお持ちいただけましたら、是非お問い合わせください。</p>
+    <div class="contact-grid">
+      <div>
+        <div>
+          <div class="contact-row"><span class="c-key">TEL</span><span class="c-val"><a href="tel:0506878-5961">050-6878-5961</a></span></div>
+          <div class="contact-row"><span class="c-key">MAIL</span><span class="c-val"><a href="mailto:suenaga@sueseisakujo.com">suenaga@sueseisakujo.com</a></span></div>
+          <div class="contact-row"><span class="c-key">TIME</span><span class="c-val">10:00〜18:00（定休日なし）</span></div>
+        </div>
+        <a href="https://lin.ee/luDMtiT" class="line-btn" target="_blank">💬 LINEで相談する</a>
+      </div>
+      <div>
+        <div class="form-row">
+          <div class="form-group"><label>姓</label><input type="text" placeholder="山田"></div>
+          <div class="form-group"><label>名</label><input type="text" placeholder="太郎"></div>
+        </div>
+        <div class="form-group"><label>メールアドレス</label><input type="email" placeholder="example@mail.com"></div>
+        <div class="form-group"><label>メッセージ</label><textarea placeholder="お気軽にご相談ください"></textarea></div>
+        <button class="btn-submit">送信</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo"><img src="https://static.wixstatic.com/media/7cabd4_553905c9178440c389e0c285dbb5fe16~mv2.png" alt="スエ製作所"></div>
+  <div class="footer-links">
+    <a href="shop.html">SHOP</a>
+    <a href="about.html">自己紹介</a>
+    <a href="contact.html">お問い合わせ</a>
+    <a href="プリンター.html">3Dプリンター製作</a>
+    <a href="#">FAQ</a>
+    <a href="#">特定商取引に基づく表記</a>
+  </div>
+  <div class="footer-copy">© 2024 スエ製作所</div>
+</footer>
+
+</body>
+</html>
