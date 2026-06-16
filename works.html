@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>施工実績 | スエ製作所</title>
+  <meta name="description" content="スエ製作所の自宅リノベーション実績。コーブ照明・トリプルサッシ・床上エアコン・組子アートなど、セルフリノベーションの実例をご紹介します。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Noto Sans JP', sans-serif; font-weight: 300; color: #2c2c2c; background: #fff; -webkit-font-smoothing: antialiased; }
+    nav { position: sticky; top: 0; z-index: 100; background: #fff; border-bottom: 1px solid #e8e8e8; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 60px; }
+    .logo img { height: 36px; display: block; }
+    .nav-links { display: flex; list-style: none; }
+    .nav-links a { display: block; padding: 0 16px; line-height: 60px; font-size: 12px; text-decoration: none; color: #666; transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: #e07044; }
+
+    .page-header { padding: 64px 40px 48px; border-bottom: 1px solid #e8e8e8; }
+    .page-header .label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #e07044; margin-bottom: 12px; }
+    .page-header h1 { font-family: 'Noto Serif JP', serif; font-size: 28px; font-weight: 300; letter-spacing: 0.06em; margin-bottom: 16px; }
+    .page-header p { font-size: 14px; line-height: 2.1; color: #555; max-width: 600px; }
+
+    .works-hero { position: relative; overflow: hidden; }
+    .works-hero img { width: 100%; max-height: 500px; object-fit: cover; display: block; }
+    .works-hero-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.6));
+      padding: 40px 40px 28px;
+      color: white;
+    }
+    .works-hero-caption h2 { font-family: 'Noto Serif JP', serif; font-size: 22px; font-weight: 300; letter-spacing: 0.06em; margin-bottom: 6px; }
+    .works-hero-caption p { font-size: 13px; opacity: 0.8; }
+
+    .works-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #e8e8e8; }
+    .work-card { background: #fff; text-decoration: none; color: inherit; display: block; transition: opacity .2s; }
+    .work-card:hover { opacity: 0.85; }
+    .work-card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+    .work-card-body { padding: 20px 24px 28px; }
+    .work-card-tag { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #e07044; margin-bottom: 8px; }
+    .work-card h3 { font-family: 'Noto Serif JP', serif; font-size: 16px; font-weight: 400; letter-spacing: 0.04em; margin-bottom: 8px; line-height: 1.5; }
+    .work-card p { font-size: 12px; line-height: 1.9; color: #666; }
+    .work-card-arrow { font-size: 12px; color: #e07044; margin-top: 12px; display: block; }
+
+    .point-section { padding: 72px 40px; background: #f9f9f9; }
+    .point-inner { max-width: 900px; margin: 0 auto; }
+    .point-inner h2 { font-family: 'Noto Serif JP', serif; font-size: 22px; font-weight: 300; letter-spacing: 0.06em; margin-bottom: 32px; }
+    .point-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .point-item { }
+    .point-num { font-size: 11px; letter-spacing: 0.2em; color: #e07044; margin-bottom: 10px; }
+    .point-item h3 { font-size: 15px; font-weight: 400; color: #2c2c2c; margin-bottom: 8px; }
+    .point-item p { font-size: 13px; line-height: 1.9; color: #666; }
+
+    .cta-section { padding: 72px 40px; text-align: center; border-top: 1px solid #e8e8e8; }
+    .cta-section h2 { font-family: 'Noto Serif JP', serif; font-size: 22px; font-weight: 300; margin-bottom: 16px; }
+    .cta-section p { font-size: 14px; color: #555; line-height: 2; margin-bottom: 32px; }
+    .btn-primary { display: inline-block; background: #2c2c2c; color: #fff; padding: 12px 32px; font-size: 13px; text-decoration: none; letter-spacing: 0.06em; transition: background .2s; margin: 0 6px; }
+    .btn-primary:hover { background: #e07044; }
+    .btn-line { display: inline-flex; align-items: center; gap: 8px; background: #06C755; color: #fff; padding: 12px 24px; font-size: 13px; text-decoration: none; margin: 0 6px; transition: opacity .2s; }
+    .btn-line:hover { opacity: .85; }
+
+    footer { background: #2c2c2c; color: #aaa; padding: 36px 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .footer-logo img { height: 26px; filter: brightness(0) invert(1); opacity: .35; }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-links a { font-size: 12px; color: #888; text-decoration: none; transition: color .2s; }
+    .footer-links a:hover { color: #e07044; }
+    .footer-copy { font-size: 11px; color: #666; }
+
+    @media (max-width: 720px) {
+      nav { padding: 0 16px; }
+      .nav-links { display: none; }
+      .page-header { padding: 40px 20px 32px; }
+      .works-grid { grid-template-columns: 1fr 1fr; }
+      .point-section { padding: 48px 20px; }
+      .point-list { grid-template-columns: 1fr; gap: 24px; }
+      .cta-section { padding: 48px 20px; }
+      footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 480px) {
+      .works-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo"><img src="https://static.wixstatic.com/media/7cabd4_553905c9178440c389e0c285dbb5fe16~mv2.png" alt="スエ製作所"></a>
+  <ul class="nav-links">
+    <li><a href="index.html">HOME</a></li>
+    <li><a href="works.html" class="active">施工実績</a></li>
+    <li><a href="column.html">コラム</a></li>
+    <li><a href="shop.html">SHOP</a></li>
+    <li><a href="about.html">自己紹介</a></li>
+    <li><a href="contact.html">お問い合わせ</a></li>
+    <li><a href="プリンター.html">3Dプリンター製作</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="label">Works</div>
+  <h1>施工実績</h1>
+  <p>自宅をフルセルフリノベーション。耐震・断熱性能を数値で確認しながら、大工10年の経験と建築士の知識で一つひとつ仕上げました。実際に自分でやってみたからこそ、リアルなサポートができます。</p>
+</div>
+
+<div class="works-hero">
+  <img src="https://static.wixstatic.com/media/7cabd4_021fa7ae396c4e5ca6f300de74bdf0db~mv2.jpeg" alt="自宅リノベーション全景">
+  <div class="works-hero-caption">
+    <h2>自宅リノベーション — 東京</h2>
+    <p>耐震補強・断熱改修・コーブ照明・組子アートなど、すべてセルフで施工</p>
+  </div>
+</div>
+
+<div class="works-grid">
+  <a class="work-card" href="room-hokusai0607.html">
+    <img src="https://static.wixstatic.com/media/7cabd4_143819153c8c45d8bb42466e12a0a08f~mv2.jpg" alt="葛飾北斎 組子アート">
+    <div class="work-card-body">
+      <div class="work-card-tag">Art / 3D Print</div>
+      <h3>葛飾北斎「神奈川沖浪裏」組子アート</h3>
+      <p>3Dプリンターで制作した麻の葉組子。伝統文様と現代技術の融合。</p>
+      <span class="work-card-arrow">詳しく見る →</span>
+    </div>
+  </a>
+  <a class="work-card" href="room-cove0607.html">
+    <img src="https://static.wixstatic.com/media/7cabd4_143819153c8c45d8bb42466e12a0a08f~mv2.jpg" alt="コーブ照明">
+    <div class="work-card-body">
+      <div class="work-card-tag">Lighting</div>
+      <h3>コーブ照明</h3>
+      <p>天井に間接光を当てる照明手法。眩しさをなくし空間に落ち着きをもたらす。</p>
+      <span class="work-card-arrow">詳しく見る →</span>
+    </div>
+  </a>
+  <a class="work-card" href="room-sash0607.html">
+    <img src="https://static.wixstatic.com/media/7cabd4_143819153c8c45d8bb42466e12a0a08f~mv2.jpg" alt="大開口トリプルサッシ">
+    <div class="work-card-body">
+      <div class="work-card-tag">Window / Insulation</div>
+      <h3>大開口トリプルサッシ</h3>
+      <p>断熱性能が格段に向上。結露・冷気の侵入を大幅に抑える。</p>
+      <span class="work-card-arrow">詳しく見る →</span>
+    </div>
+  </a>
+  <a class="work-card" href="room-table0607.html">
+    <img src="https://static.wixstatic.com/media/7cabd4_143819153c8c45d8bb42466e12a0a08f~mv2.jpg" alt="壁一体タイルテーブル">
+    <div class="work-card-body">
+      <div class="work-card-tag">Interior / DIY</div>
+      <h3>壁一体タイルテーブル</h3>
+      <p>壁面と同じタイルで仕上げたテーブル。壁と一体化したすっきりした空間。</p>
+      <span class="work-card-arrow">詳しく見る →</span>
+    </div>
+  </a>
+  <a class="work-card" href="room-desk0607.html">
+    <img src="https://static.wixstatic.com/media/7cabd4_143819153c8c45d8bb42466e12a0a08f~mv2.jpg" alt="柱無しデスク">
+    <div class="work-card-body">
+      <div class="work-card-tag">Furniture / DIY</div>
+      <h3>柱無しデスク</h3>
+      <p>床と天井で突っ張る金物を使い壁を傷つけずに設置。賃貸でも対応可。</p>
+      <span class="work-card-arrow">詳しく見る →</span>
+    </div>
+  </a>
+  <a class="work-card" href="room-ac0607.html">
+    <img src="https://static.wixstatic.com/media/7cabd4_143819153c8c45d8bb42466e12a0a08f~mv2.jpg" alt="床上エアコン">
+    <div class="work-card-body">
+      <div class="work-card-tag">Equipment</div>
+      <h3>床上エアコン</h3>
+      <p>暖房効率が高く操作しやすい床上設置。バリアフリー対応にも有効。</p>
+      <span class="work-card-arrow">詳しく見る →</span>
+    </div>
+  </a>
+</div>
+
+<section class="point-section">
+  <div class="point-inner">
+    <h2>このリノベーションのポイント</h2>
+    <div class="point-list">
+      <div class="point-item">
+        <div class="point-num">01</div>
+        <h3>性能を数値で確認</h3>
+        <p>wall statによる耐震シミュレーション、断熱性能の計算を行い、「なんとなく」ではなく数値に基づいた改修を実施。</p>
+      </div>
+      <div class="point-item">
+        <div class="point-num">02</div>
+        <h3>すべてセルフで施工</h3>
+        <p>電気工事など資格が必要なもの以外は自分の手で施工。大工経験があるからこそ細部にこだわれる。</p>
+      </div>
+      <div class="point-item">
+        <div class="point-num">03</div>
+        <h3>暮らしに合わせた設計</h3>
+        <p>車椅子での生活を前提に、床上エアコン・引き戸・段差の解消など、使いやすさを最優先に設計。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <h2>あなたの家でも、いっしょにつくりましょう。</h2>
+  <p>実績はまだ自宅だけですが、だからこそリアルな経験をお伝えできます。<br>どんな小さな相談でも、お気軽にどうぞ。</p>
+  <a href="contact.html" class="btn-primary">お問い合わせ</a>
+  <a href="https://lin.ee/luDMtiT" class="btn-line" target="_blank">💬 LINEで相談する</a>
+</section>
+
+<footer>
+  <div class="footer-logo"><img src="https://static.wixstatic.com/media/7cabd4_553905c9178440c389e0c285dbb5fe16~mv2.png" alt="スエ製作所"></div>
+  <div class="footer-links">
+    <a href="index.html">HOME</a>
+    <a href="works.html">施工実績</a>
+    <a href="column.html">コラム</a>
+    <a href="shop.html">SHOP</a>
+    <a href="about.html">自己紹介</a>
+    <a href="contact.html">お問い合わせ</a>
+    <a href="プリンター.html">3Dプリンター製作</a>
+  </div>
+  <div class="footer-copy">© 2024 スエ製作所</div>
+</footer>
+
+</body>
+</html>
