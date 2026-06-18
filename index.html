@@ -52,6 +52,14 @@
     .hotspot.dark .hotspot-label { color: #1a1a1a; text-shadow: none; }
     .hotspot.dark .hotspot-sub { color: #444; text-shadow: none; }
 
+    .hero-credit {
+      position: absolute; left: 40px; bottom: 28px;
+      color: rgba(255,255,255,0.85); font-size: 14px; letter-spacing: 0.03em;
+      font-family: 'Noto Sans JP', sans-serif; font-weight: 300;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+    }
+    .hero-credit-line { display: block; width: 70px; height: 2px; background: #e07044; margin-bottom: 10px; }
+
     .hero-text { padding: 40px 40px 48px; border-bottom: 1px solid #e8e8e8; }
     .hero-text h1 { font-family: 'Noto Serif JP', serif; font-size: 26px; font-weight: 300; letter-spacing: 0.06em; color: #2c2c2c; margin-bottom: 16px; line-height: 1.7; }
     .hero-text p { font-size: 14px; line-height: 2.1; color: #555; max-width: 640px; margin-bottom: 24px; }
@@ -128,6 +136,8 @@
       .hotspot { padding: 3px 6px; }
       .hotspot-label { font-size: 9px; }
       .hotspot-sub { font-size: 7px; margin-top: 1px; }
+      .hero-credit { left: 16px; bottom: 14px; font-size: 9px; }
+      .hero-credit-line { width: 40px; height: 1px; margin-bottom: 6px; }
     }
     .hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 28px; height: 28px; cursor: pointer; background: none; border: none; padding: 0; }
     .hamburger span { display: block; width: 100%; height: 2px; background: #2c2c2c; transition: transform .25s, opacity .25s; }
@@ -186,7 +196,7 @@
   </a>
 
   <a class="hotspot" href="room-hokusai0607.html"
-     style="left:calc(396/1920*100% - 100px); top:calc(437/1080*100% - 16px);">
+     style="left:calc(396/1920*100% - 100px); top:calc(30.3% - 16px);">
     <span class="hotspot-label">葛飾北斎「神奈川県沖浪裏」</span>
     <span class="hotspot-sub">3Dプリンター製 組子アート</span>
   </a>
@@ -198,7 +208,7 @@
   </a>
 
   <a class="hotspot dark" href="room-table0607.html"
-     style="left:calc(852/1920*100% - 80px); top:calc(785/1080*100% - 16px);">
+     style="left:calc(50.1% - 80px); top:calc(60.2% - 16px);">
     <span class="hotspot-label">壁一体タイルテーブル</span>
     <span class="hotspot-sub">Built-in Tile Table</span>
   </a>
@@ -210,10 +220,15 @@
   </a>
 
   <a class="hotspot dark" href="room-ac0607.html"
-     style="left:calc(624/1920*100% - 60px); top:calc(852/1080*100% - 16px);">
+     style="left:calc(29.9% - 60px); top:calc(79.5% - 16px);">
     <span class="hotspot-label">床上エアコン</span>
     <span class="hotspot-sub">Floor-level Air Conditioning</span>
   </a>
+
+  <div class="hero-credit">
+    <span class="hero-credit-line"></span>
+    Sue Seisakujo &nbsp;&mdash;&nbsp; Self Renovation Support
+  </div>
 </div>
 
 <div class="hero-text">
