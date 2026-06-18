@@ -33,24 +33,22 @@
     .hotspot {
       position: absolute;
       cursor: pointer;
-      padding: 8px 12px;
-      border-radius: 2px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      background: rgba(20,16,12,0.45);
       transition: background 0.2s;
       text-decoration: none;
     }
-    .hotspot:hover { background: rgba(224,112,68,0.15); outline: 1px solid rgba(224,112,68,0.5); }
+    .hotspot:hover { background: rgba(224,112,68,0.55); outline: 1px solid rgba(224,112,68,0.7); }
     .hotspot-label {
       font-size: 13px; color: #fff; font-family: 'Noto Sans JP', sans-serif;
-      font-weight: 300; letter-spacing: 0.04em; text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+      font-weight: 300; letter-spacing: 0.04em; text-shadow: 0 1px 3px rgba(0,0,0,0.7);
       display: block;
     }
     .hotspot-sub {
-      font-size: 11px; color: rgba(255,255,255,0.75);
-      text-shadow: 0 1px 3px rgba(0,0,0,0.5); display: block; margin-top: 2px;
+      font-size: 11px; color: rgba(255,255,255,0.8);
+      text-shadow: 0 1px 3px rgba(0,0,0,0.7); display: block; margin-top: 2px;
     }
-    /* 暗い背景のテキストは黒 */
-    .hotspot.dark .hotspot-label { color: #1a1a1a; text-shadow: none; }
-    .hotspot.dark .hotspot-sub { color: #444; text-shadow: none; }
 
     .hero-credit {
       position: absolute; left: 40px; bottom: 28px;
@@ -189,7 +187,7 @@
 <div class="hero-wrap">
   <img class="hero-img" src="hero-entrance.jpeg" alt="スエ製作所 施工写真" usemap="#heromap">
 
-  <a class="hotspot dark" href="room-cove0607.html"
+  <a class="hotspot" href="room-cove0607.html"
      style="left:calc(840/1920*100% - 60px); top:calc(108/1080*100% - 16px);">
     <span class="hotspot-label">コーブ照明</span>
     <span class="hotspot-sub">Cove Lighting</span>
@@ -207,7 +205,7 @@
     <span class="hotspot-sub">Triple-glazed Sliding Door</span>
   </a>
 
-  <a class="hotspot dark" href="room-table0607.html"
+  <a class="hotspot" href="room-table0607.html"
      style="left:calc(50.1% - 80px); top:calc(60.2% - 16px);">
     <span class="hotspot-label">壁一体タイルテーブル</span>
     <span class="hotspot-sub">Built-in Tile Table</span>
@@ -219,7 +217,7 @@
     <span class="hotspot-sub">Pillar-free Desk</span>
   </a>
 
-  <a class="hotspot dark" href="room-ac0607.html"
+  <a class="hotspot" href="room-ac0607.html"
      style="left:calc(29.9% - 60px); top:calc(79.5% - 16px);">
     <span class="hotspot-label">床上エアコン</span>
     <span class="hotspot-sub">Floor-level Air Conditioning</span>
