@@ -43,15 +43,15 @@
   #panel {
     position: fixed;
     top: 16px; right: 16px;
-    width: 340px;
-    max-height: 92vh;
+    width: 280px;
+    max-height: 50vh;
     overflow-y: auto;
-    background: rgba(20,20,15,0.95);
+    background: rgba(20,20,15,0.85);
     color: #f4f1e9;
-    padding: 18px 20px;
+    padding: 14px 16px;
     border-radius: 8px;
-    font-size: 12px;
-    line-height: 1.7;
+    font-size: 11px;
+    line-height: 1.6;
     z-index: 999;
     box-shadow: 0 8px 30px rgba(0,0,0,0.4);
   }
@@ -60,6 +60,12 @@
   #panel .item b { color: #e8c878; }
   #panel code { display:block; background:rgba(0,0,0,0.3); padding:6px 8px; border-radius:4px; margin-top:4px; font-size:11px; word-break:break-all; }
   #panel .hint { color:#cfcab0; font-size:11px; margin-top:14px; }
+  #panel.collapsed { width: auto; max-height: none; padding: 10px 14px; }
+  #panel.collapsed #panelBody { display: none; }
+  #toggleBtn {
+    background: #e8c878; color:#1a1a1a; border:none; border-radius:4px;
+    padding:5px 10px; font-size:11px; cursor:pointer; margin-bottom:8px;
+  }
 </style>
 </head>
 <body>
@@ -105,10 +111,19 @@
 </div>
 
 <div id="panel">
-  <h3>ラベル位置エディタ</h3>
-  <div class="hint">各ラベルをドラッグして好きな位置に動かしてください。下に現在の座標(%)が自動更新されます。終わったら全部のコードをまとめてコピーして教えてください。</div>
-  <div id="coords" style="margin-top:14px;"></div>
+  <button id="toggleBtn">隠す/表示</button>
+  <div id="panelBody">
+    <h3>ラベル位置エディタ</h3>
+    <div class="hint">各ラベルをドラッグして好きな位置に動かしてください。下に現在の座標(%)が自動更新されます。終わったら全部のコードをまとめてコピーして教えてください。ラベルがこのパネルに隠れる場合は上の「隠す/表示」ボタンでパネルを一時的に小さくできます。</div>
+    <div id="coords" style="margin-top:14px;"></div>
+  </div>
 </div>
+
+<script>
+  document.getElementById('toggleBtn').addEventListener('click', () => {
+    document.getElementById('panel').classList.toggle('collapsed');
+  });
+</script>
 
 <script>
   const wrap = document.getElementById('heroWrap');
