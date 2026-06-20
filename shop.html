@@ -1,141 +1,274 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>自助具SHOP | スエ製作所</title>
-  <meta name="description" content="手が不自由な方に自助具の制作サービスを行っております。スエケース・sueBRASI・ONE HAND COFFEEなど販売中。">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <style>
-    .page-hero { background: #f7f7f7; padding: 50px 20px 40px; text-align: center; }
-    .page-hero h1 { font-size: 28px; font-weight: 500; margin-bottom: 8px; }
-    .products { max-width: 900px; margin: 0 auto; padding: 60px 20px; }
-    .product-card {
-      display: grid; grid-template-columns: 300px 1fr; gap: 40px;
-      align-items: center; margin-bottom: 60px;
-      padding-bottom: 60px; border-bottom: 1px solid #eee;
-    }
-    .product-card:last-child { border-bottom: none; }
-    .product-card.reverse { grid-template-columns: 1fr 300px; }
-    .product-card.reverse .product-img { order: 2; }
-    .product-card.reverse .product-info { order: 1; }
-    .product-img img { width: 100%; border-radius: 4px; display: block; }
-    .product-info h2 { text-align: left; font-size: 22px; margin-bottom: 6px; }
-    .product-info .tagline { font-size: 15px; color: #e07044; margin-bottom: 16px; font-weight: 500; }
-    .product-info p { margin-bottom: 20px; }
-    .product-btns { display: flex; gap: 12px; flex-wrap: wrap; }
-    @media (max-width: 680px) {
-      .product-card, .product-card.reverse { grid-template-columns: 1fr; }
-      .product-card.reverse .product-img { order: 1; }
-      .product-card.reverse .product-info { order: 2; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自助具SHOP | スエ製作所</title>
+<meta name="description" content="手が不自由な方の暮らしを、もっと便利に。スエ製作所の自助具 sueglobe。">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Noto+Serif+JP:wght@200;300;400;500&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap');
+
+  :root{
+    --olive:#6b6a4f;
+    --olive-deep:#4a4a36;
+    --sand:#e8e2d4;
+    --paper:#f4f1e9;
+    --ink:#2b2a25;
+    --ink-soft:#5b594e;
+    --line:rgba(43,42,37,0.14);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    font-weight:300;
+    line-height:1.9;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .eyebrow{
+    font-family:'Cormorant Garamond', serif;
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+
+  a{color:inherit;}
+
+  /* NAV */
+  nav{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:100;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:22px 6vw;
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+  }
+  nav .logo img{height:34px;display:block;}
+  nav .navlinks{
+    display:flex;
+    gap:36px;
+    list-style:none;
+  }
+  nav .navlinks a{
+    font-size:12px;
+    letter-spacing:0.12em;
+    text-decoration:none;
+    color:var(--ink-soft);
+  }
+  nav .navlinks a.current{color:var(--ink);border-bottom:1px solid var(--olive);padding-bottom:4px;}
+
+  /* HERO BANNER */
+  .shop-hero{
+    padding:200px 6vw 100px;
+    background:var(--olive-deep);
+    color:#f4f1e9;
+  }
+  .shop-hero-inner{
+    max-width:1180px;
+    margin:0 auto;
+  }
+  .shop-hero .eyebrow{color:#cfcab0;display:block;margin-bottom:22px;}
+  .shop-hero h1{
+    font-family:'Noto Serif JP', serif;
+    font-weight:400;
+    font-size:clamp(28px, 4vw, 46px);
+    line-height:1.6;
+    max-width:760px;
+  }
+
+  /* PRODUCT GRID */
+  .shop-list{
+    padding:120px 6vw 160px;
+  }
+  .shop-list-inner{
+    max-width:1180px;
+    margin:0 auto;
+  }
+
+  .product-card{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:80px;
+    align-items:center;
+    text-decoration:none;
+    color:var(--ink);
+  }
+  .product-card-image{
+    aspect-ratio:4/5;
+    overflow:hidden;
+    background:var(--olive-deep);
+    position:relative;
+  }
+  .product-card-image img{
+    width:100%;height:100%;
+    object-fit:cover;
+    object-position:62% 30%;
+    display:block;
+    transition:transform 0.7s cubic-bezier(.16,1,.3,1);
+  }
+  .product-card:hover .product-card-image img{
+    transform:scale(1.04);
+  }
+  .product-card-body .eyebrow{display:block;margin-bottom:20px;}
+  .product-card-body h2{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:300;
+    font-size:clamp(40px, 5vw, 64px);
+    margin-bottom:18px;
+    letter-spacing:0.01em;
+  }
+  .product-card-body .tagline{
+    font-family:'Noto Serif JP', serif;
+    font-size:16px;
+    color:var(--ink-soft);
+    margin-bottom:28px;
+  }
+  .product-card-body .desc{
+    font-size:14.5px;
+    color:var(--ink-soft);
+    line-height:1.95;
+    max-width:440px;
+    margin-bottom:40px;
+  }
+  .cta-link{
+    display:inline-flex;
+    align-items:center;
+    gap:14px;
+    font-size:12px;
+    letter-spacing:0.16em;
+    text-decoration:none;
+    color:var(--ink);
+    border-bottom:1px solid var(--ink);
+    padding-bottom:6px;
+  }
+  .cta-link .arrow{
+    transition:transform 0.3s ease;
+  }
+  .product-card:hover .cta-link .arrow{
+    transform:translateX(6px);
+  }
+
+  /* ORDER NOTE */
+  .order-note{
+    background:var(--sand);
+    padding:90px 6vw;
+    text-align:center;
+  }
+  .order-note p{
+    font-family:'Noto Serif JP', serif;
+    font-size:15px;
+    color:var(--ink-soft);
+    margin-bottom:28px;
+  }
+  .order-btn{
+    display:inline-block;
+    font-size:12px;
+    letter-spacing:0.16em;
+    text-decoration:none;
+    color:#f4f1e9;
+    background:var(--olive-deep);
+    padding:18px 40px;
+  }
+
+  footer{
+    background:var(--ink);
+    color:rgba(244,241,233,0.55);
+    padding:60px 6vw 40px;
+    font-size:12px;
+  }
+  .footer-inner{
+    max-width:1180px;
+    margin:0 auto;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:30px;
+  }
+  footer a{text-decoration:none;color:rgba(244,241,233,0.55);}
+  .footer-copy{
+    width:100%;
+    text-align:center;
+    margin-top:40px;
+    padding-top:24px;
+    border-top:1px solid rgba(244,241,233,0.12);
+    letter-spacing:0.1em;
+  }
+
+  @media (max-width:860px){
+    .product-card{grid-template-columns:1fr;gap:36px;}
+    nav .navlinks{display:none;}
+    .shop-hero{padding:140px 7vw 70px;}
+    .shop-list{padding:70px 7vw 100px;}
+  }
+</style>
 </head>
 <body>
 
 <nav>
-  <a href="index.html" class="nav-logo"><img src="images/logo.png" alt="Sue製作所"></a>
-  <ul class="nav-links">
-    <li><a href="index.html">HOME</a></li>
-    <li><a href="works.html">施工実績</a></li>
-    <li><a href="column.html">コラム</a></li>
-    <li><a href="shop.html" class="active">SHOP</a></li>
-    <li><a href="about.html">自己紹介</a></li>
-    <li><a href="contact.html">お問い合わせ</a></li>
-    <li><a href="printer.html">3Dプリンター製作</a></li>
+  <a class="logo" href="https://www.sueseisakujo.com/index.html"><img src="https://www.sueseisakujo.com/images/logo.png" alt="スエ製作所"></a>
+  <ul class="navlinks">
+    <li><a href="https://www.sueseisakujo.com/index.html">HOME</a></li>
+    <li><a href="https://www.sueseisakujo.com/works.html">施工実績</a></li>
+    <li><a href="https://www.sueseisakujo.com/column.html">コラム</a></li>
+    <li><a class="current" href="https://www.sueseisakujo.com/shop.html">SHOP</a></li>
+    <li><a href="https://www.sueseisakujo.com/about.html">自己紹介</a></li>
+    <li><a href="https://www.sueseisakujo.com/contact.html">お問い合わせ</a></li>
   </ul>
 </nav>
 
-<div class="page-hero">
-  <h1>自助具SHOP</h1>
-  <p>手が不自由な方の暮らしを、もっと便利に。</p>
+<div class="shop-hero">
+  <div class="shop-hero-inner">
+    <span class="eyebrow">自助具 SHOP</span>
+    <h1>手が不自由な方の暮らしを、もっと便利に。<br>本当に必要な場所にだけ、本当に必要な機能を。</h1>
+  </div>
 </div>
 
-<div class="products">
-
-  <div class="product-card">
-    <div class="product-img">
-      <img src="https://static.wixstatic.com/media/7cabd4_68ad57b29f6e44a7bac038c44efbbe23~mv2.png" alt="スエケース">
-    </div>
-    <div class="product-info">
-      <div class="tagline">「名刺交換」もう怖くない。</div>
-      <h2>「スエケース」</h2>
-      <p>ケースをスライドさせると名刺が1枚出てきます。<br>（※やり方によっては複数枚飛び出す場合もございます）</p>
-      <div class="product-btns">
-        <a href="contact.html" class="btn">今すぐ購入</a>
-        <a href="contact.html" class="btn-outline">さらに表示</a>
+<section class="shop-list">
+  <div class="shop-list-inner">
+    <a class="product-card" href="shop-sueglobe.html">
+      <div class="product-card-image">
+        <img src="hero.png" alt="sueglobe を装着したイメージ">
       </div>
-    </div>
-  </div>
-
-  <div class="product-card reverse">
-    <div class="product-img">
-      <img src="https://static.wixstatic.com/media/7cabd4_e26374774cb343d295ca31e9cf2528d6~mv2.png" alt="sueBRASI">
-    </div>
-    <div class="product-info">
-      <div class="tagline">頭がかゆい、、、。もうしっかり洗える。</div>
-      <h2>「sueBRASI」</h2>
-      <p>手に障害がある方でも、手首にはめて使える洗髪ブラシです。</p>
-      <div class="product-btns">
-        <a href="contact.html" class="btn">今すぐ購入</a>
-        <a href="contact.html" class="btn-outline">さらに表示</a>
+      <div class="product-card-body">
+        <span class="eyebrow">Wrist Support Glove</span>
+        <h2>sueglobe</h2>
+        <p class="tagline">こぐ力を、手首に。</p>
+        <p class="desc">
+          車椅子を自分の力でこぐ人のために。本当に力が必要な場所は手首だった——その発見から生まれたグリップグローブです。糸を使わず面で接着する構造で、劣化の起点を作りません。
+        </p>
+        <span class="cta-link">商品詳細を見る <span class="arrow">→</span></span>
       </div>
-    </div>
+    </a>
   </div>
+</section>
 
-  <div class="product-card">
-    <div class="product-img">
-      <img src="https://static.wixstatic.com/media/7cabd4_fac5f2284cdc4d99aebd5cba2de21ff6~mv2.png" alt="ONE HAND COFFEE">
-    </div>
-    <div class="product-info">
-      <div class="tagline">片手で、手軽にコーヒーを。</div>
-      <h2>「ONE HAND COFFEE」</h2>
-      <p>手に障害がある方でも、片手で飲めるように工夫された自助具です。縄文土器調のデザイン。スターバックスコーヒー ショートサイズ取り付け例あり。</p>
-      <div class="product-btns">
-        <a href="contact.html" class="btn">今すぐ購入</a>
-        <a href="contact.html" class="btn-outline">さらに表示</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="product-card reverse">
-    <div class="product-img">
-      <img src="https://static.wixstatic.com/media/7cabd4_f8881d03de874bef93e478591cd861e6~mv2.png" alt="Sue Pen">
-    </div>
-    <div class="product-info">
-      <div class="tagline">Apple Pencilをもっと身近に。</div>
-      <h2>「Sue Pen」</h2>
-      <p>簡単に装着でき、障害者それぞれに合わせた使い方ができるようにシンプルにデザインされた自助具です。表面にはビルの街並み。</p>
-      <div class="product-btns">
-        <a href="contact.html" class="btn">今すぐ購入</a>
-        <a href="contact.html" class="btn-outline">さらに表示</a>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<div style="background:#f7f7f7; padding:40px 20px; text-align:center;">
-  <p style="margin-bottom:16px;">オーダーメイドのご相談もお気軽にどうぞ。</p>
-  <a href="contact.html" class="btn">お問い合わせ・ご注文</a>
+<div class="order-note">
+  <p>オーダーメイドのご相談もお気軽にどうぞ。</p>
+  <a class="order-btn" href="https://www.sueseisakujo.com/contact.html">お問い合わせ・ご注文</a>
 </div>
 
 <footer>
   <div class="footer-inner">
-    <div class="footer-about">
-      <img src="images/logo.png" alt="Sue製作所">
-      <p>大工の経験と、建築士としての専門知識で、<br>おしゃれだけではないこれからのリノベーションをご提案します。</p>
-      <div class="footer-links"><a href="#">FAQ</a><a href="#">特定商取引に基づく表記</a></div>
+    <div>
+      <a href="https://www.sueseisakujo.com/index.html">スエ製作所</a><br>
+      大工の経験と、建築士としての専門知識で、<br>おしゃれだけではないこれからのリノベーションをご提案します。
     </div>
-    <div class="footer-contact">
-      <h4>お問い合わせ</h4>
-      <p>TEL <a href="tel:0506878-5961">050-6878-5961</a></p>
-      <p>MAIL <a href="mailto:suenaga@sueseisakujo.com">suenaga@sueseisakujo.com</a></p>
-      <p style="margin-top:8px;">営業時間 10:00〜18:00<br>（定休日なし）</p>
+    <div>
+      TEL <a href="tel:0506878-5961">050-6878-5961</a><br>
+      MAIL <a href="mailto:suenaga@sueseisakujo.com">suenaga@sueseisakujo.com</a><br>
+      営業時間 10:00〜18:00（定休日なし）
     </div>
+    <div class="footer-copy">© 2026 スエ製作所</div>
   </div>
-  <div class="footer-bottom">© 2024 スエ製作所</div>
 </footer>
+
 </body>
 </html>
