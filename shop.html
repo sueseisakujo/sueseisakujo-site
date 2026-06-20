@@ -20,6 +20,8 @@
 
   *{margin:0;padding:0;box-sizing:border-box;}
 
+  html{scroll-behavior:smooth;}
+
   body{
     background:var(--paper);
     color:var(--ink);
@@ -27,6 +29,7 @@
     font-weight:300;
     line-height:1.9;
     -webkit-font-smoothing:antialiased;
+    padding-top:73px;
   }
 
   .eyebrow{
@@ -37,9 +40,20 @@
     color:var(--ink-soft);
   }
 
-  a{color:inherit;}
+  h1,h2,h3{
+    font-weight:400;
+    letter-spacing:0.02em;
+  }
 
-  /* NAV */
+  .serif-en{
+    font-family:'Cormorant Garamond', serif;
+  }
+
+  .serif-jp{
+    font-family:'Noto Serif JP', serif;
+  }
+
+  /* ===== NAV ===== */
   nav{
     position:fixed;
     top:0;left:0;right:0;
@@ -47,14 +61,17 @@
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:22px 6vw;
+    padding:18px 6vw;
     background:var(--paper);
     border-bottom:1px solid var(--line);
   }
-  nav .logo img{height:34px;display:block;}
+  nav .logo img{
+    height:32px;
+    display:block;
+  }
   nav .navlinks{
     display:flex;
-    gap:36px;
+    gap:34px;
     list-style:none;
   }
   nav .navlinks a{
@@ -63,150 +80,369 @@
     text-decoration:none;
     color:var(--ink-soft);
   }
-  nav .navlinks a.current{color:var(--ink);border-bottom:1px solid var(--olive);padding-bottom:4px;}
-
-  /* HERO BANNER */
-  .shop-hero{
-    padding:200px 6vw 100px;
-    background:var(--olive-deep);
-    color:#f4f1e9;
-  }
-  .shop-hero-inner{
-    max-width:1180px;
-    margin:0 auto;
-  }
-  .shop-hero .eyebrow{color:#cfcab0;display:block;margin-bottom:22px;}
-  .shop-hero h1{
-    font-family:'Noto Serif JP', serif;
-    font-weight:400;
-    font-size:clamp(28px, 4vw, 46px);
-    line-height:1.6;
-    max-width:760px;
-  }
-
-  /* PRODUCT GRID */
-  .shop-list{
-    padding:120px 6vw 160px;
-  }
-  .shop-list-inner{
-    max-width:1180px;
-    margin:0 auto;
-  }
-
-  .product-card{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:80px;
-    align-items:center;
-    text-decoration:none;
+  nav .navlinks a.current{
     color:var(--ink);
+    border-bottom:1px solid var(--olive);
+    padding-bottom:4px;
   }
-  .product-card-image{
-    aspect-ratio:4/5;
+  @media (max-width:860px){
+    nav .navlinks{display:none;}
+  }
+  nav .navlink{
+    font-size:11px;
+    letter-spacing:0.2em;
+    color:#fff;
+    text-decoration:none;
+  }
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;
+    width:100%;
+    height:calc(100vh - 73px);
+    min-height:560px;
     overflow:hidden;
     background:var(--olive-deep);
-    position:relative;
   }
-  .product-card-image img{
+  .hero img{
     width:100%;height:100%;
     object-fit:cover;
     object-position:62% 30%;
     display:block;
-    transition:transform 0.7s cubic-bezier(.16,1,.3,1);
+    filter:saturate(0.92) contrast(1.02);
   }
-  .product-card:hover .product-card-image img{
-    transform:scale(1.04);
+  .hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, rgba(20,20,15,0.18) 0%, rgba(20,20,15,0) 30%, rgba(20,20,15,0.05) 60%, rgba(20,20,15,0.55) 100%);
   }
-  .product-card-body .eyebrow{display:block;margin-bottom:20px;}
-  .product-card-body h2{
+  .hero-content{
+    position:absolute;
+    left:6vw;
+    bottom:9vh;
+    z-index:2;
+    color:#f6f3ea;
+    max-width:560px;
+  }
+  .hero-content .eyebrow{color:#d8d3bf;margin-bottom:18px;display:block;}
+  .hero-title{
     font-family:'Cormorant Garamond', serif;
     font-weight:300;
-    font-size:clamp(40px, 5vw, 64px);
-    margin-bottom:18px;
+    font-size:clamp(48px, 8vw, 96px);
+    line-height:0.95;
     letter-spacing:0.01em;
   }
-  .product-card-body .tagline{
+  .hero-sub{
+    margin-top:22px;
     font-family:'Noto Serif JP', serif;
-    font-size:16px;
-    color:var(--ink-soft);
-    margin-bottom:28px;
+    font-size:clamp(16px, 2vw, 19px);
+    font-weight:300;
+    color:#efece1;
+    letter-spacing:0.04em;
   }
-  .product-card-body .desc{
-    font-size:14.5px;
-    color:var(--ink-soft);
-    line-height:1.95;
-    max-width:440px;
-    margin-bottom:40px;
-  }
-  .cta-link{
-    display:inline-flex;
+  .scroll-hint{
+    position:absolute;
+    right:6vw;
+    bottom:9vh;
+    color:#efece1;
+    font-size:11px;
+    letter-spacing:0.25em;
+    writing-mode:vertical-rl;
+    z-index:2;
+    display:flex;
     align-items:center;
     gap:14px;
-    font-size:12px;
-    letter-spacing:0.16em;
-    text-decoration:none;
-    color:var(--ink);
-    border-bottom:1px solid var(--ink);
-    padding-bottom:6px;
   }
-  .cta-link .arrow{
-    transition:transform 0.3s ease;
-  }
-  .product-card:hover .cta-link .arrow{
-    transform:translateX(6px);
+  .scroll-hint::after{
+    content:"";
+    width:1px;height:60px;
+    background:rgba(239,236,225,0.5);
   }
 
-  /* ORDER NOTE */
-  .order-note{
-    background:var(--sand);
-    padding:90px 6vw;
-    text-align:center;
+  /* ===== SECTION GENERIC ===== */
+  section{
+    padding:140px 6vw;
+    position:relative;
   }
-  .order-note p{
+  .section-inner{
+    max-width:1180px;
+    margin:0 auto;
+  }
+  .section-head{
+    margin-bottom:70px;
+  }
+  .section-head .eyebrow{margin-bottom:16px;display:block;}
+  .section-head h2{
     font-family:'Noto Serif JP', serif;
+    font-size:clamp(26px, 3.4vw, 40px);
+    font-weight:400;
+    line-height:1.6;
+  }
+
+  /* ===== CONCEPT ===== */
+  .concept{
+    background:var(--paper);
+  }
+  .concept-grid{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:80px;
+    align-items:start;
+  }
+  .concept-lead{
+    font-family:'Noto Serif JP', serif;
+    font-size:clamp(22px, 2.6vw, 30px);
+    line-height:1.95;
+    color:var(--ink);
+  }
+  .concept-lead .accent{
+    color:var(--olive);
+  }
+  .concept-body p{
     font-size:15px;
     color:var(--ink-soft);
+    margin-bottom:26px;
+    letter-spacing:0.02em;
+  }
+  .concept-body p:last-child{margin-bottom:0;}
+
+  /* ===== POSITION DIAGRAM ===== */
+  .position{
+    background:var(--olive-deep);
+    color:#f4f1e9;
+  }
+  .position .eyebrow, .position .section-head h2{color:#f4f1e9;}
+  .compare{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1px;
+    background:rgba(244,241,233,0.18);
+    border:1px solid rgba(244,241,233,0.18);
+  }
+  .compare-col{
+    background:var(--olive-deep);
+    padding:56px 44px;
+  }
+  .compare-col.is-correct{
+    background:#55543e;
+  }
+  .compare-label{
+    font-family:'Cormorant Garamond', serif;
+    font-size:13px;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:rgba(244,241,233,0.55);
     margin-bottom:28px;
   }
-  .order-btn{
-    display:inline-block;
+  .compare-col.is-correct .compare-label{color:#d9d4ba;}
+  .hand-diagram{
+    width:100%;
+    aspect-ratio:1/1;
+    position:relative;
+    margin-bottom:30px;
+  }
+  .hand-diagram svg{width:100%;height:100%;}
+  .compare-title{
+    font-family:'Noto Serif JP', serif;
+    font-size:21px;
+    margin-bottom:14px;
+  }
+  .compare-text{
+    font-size:13.5px;
+    color:rgba(244,241,233,0.7);
+    line-height:1.85;
+  }
+  .compare-col.is-correct .compare-text{color:rgba(244,241,233,0.88);}
+
+  /* ===== STRUCTURE ===== */
+  .structure{
+    background:var(--paper);
+  }
+  .structure-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:90px;
+    align-items:center;
+  }
+  .structure-visual{
+    position:relative;
+  }
+  .structure-visual img{
+    width:100%;
+    display:block;
+    border-radius:2px;
+  }
+  .structure-caption{
+    margin-top:18px;
     font-size:12px;
-    letter-spacing:0.16em;
-    text-decoration:none;
-    color:#f4f1e9;
+    color:var(--ink-soft);
+    letter-spacing:0.05em;
+    display:flex;
+    justify-content:space-between;
+  }
+  .structure-points{
+    display:flex;
+    flex-direction:column;
+    gap:46px;
+  }
+  .point{
+    display:grid;
+    grid-template-columns:48px 1fr;
+    gap:22px;
+  }
+  .point-mark{
+    width:7px;height:7px;
+    border-radius:50%;
+    background:var(--olive);
+    margin-top:9px;
+  }
+  .point h3{
+    font-family:'Noto Serif JP', serif;
+    font-size:18px;
+    margin-bottom:10px;
+    font-weight:500;
+  }
+  .point p{
+    font-size:14.5px;
+    color:var(--ink-soft);
+    line-height:1.9;
+  }
+
+  /* ===== PRICING PHILOSOPHY ===== */
+  .pricing{
+    background:var(--sand);
+  }
+  .pricing-inner{
+    max-width:760px;
+    margin:0 auto;
+    text-align:center;
+  }
+  .pricing .eyebrow{display:block;margin-bottom:20px;}
+  .pricing h2{
+    font-family:'Noto Serif JP', serif;
+    font-size:clamp(24px, 3vw, 34px);
+    line-height:1.7;
+    margin-bottom:40px;
+  }
+  .pricing p{
+    font-size:15px;
+    color:var(--ink-soft);
+    line-height:2.0;
+    max-width:600px;
+    margin:0 auto;
+  }
+  .pricing-rule{
+    width:48px;height:1px;
+    background:var(--olive);
+    margin:40px auto;
+  }
+
+  /* ===== GALLERY ===== */
+  .gallery{
+    background:var(--paper);
+  }
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:1.2fr 1fr;
+    gap:24px;
+  }
+  .gallery-grid img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .gallery-main{
+    aspect-ratio:4/5;
+    overflow:hidden;
+    background:#000;
+  }
+  .gallery-side{
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+  }
+  .gallery-side-item{
+    flex:1;
+    overflow:hidden;
     background:var(--olive-deep);
-    padding:18px 40px;
+    position:relative;
+  }
+  .gallery-side-item img{
+    height:100%;
+    width:100%;
+    object-fit:cover;
+    object-position:50% 30%;
+  }
+  .gallery-tag{
+    position:absolute;
+    left:20px;bottom:20px;
+    color:#f4f1e9;
+    font-size:11px;
+    letter-spacing:0.18em;
+    z-index:2;
+  }
+  .gallery-side-item::after{
+    content:"";
+    position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.45) 100%);
+  }
+  .note-strip{
+    margin-top:24px;
+    font-size:12px;
+    color:var(--ink-soft);
+    letter-spacing:0.03em;
+    border-top:1px solid var(--line);
+    padding-top:18px;
+  }
+
+  /* ===== CTA / FOOTER ===== */
+  .closer{
+    background:var(--olive-deep);
+    color:#f4f1e9;
+    text-align:center;
+    padding:160px 6vw;
+  }
+  .closer .eyebrow{color:#cfcab0;display:block;margin-bottom:24px;}
+  .closer h2{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:300;
+    font-size:clamp(34px, 5vw, 56px);
+    margin-bottom:28px;
+    letter-spacing:0.01em;
+  }
+  .closer p{
+    font-family:'Noto Serif JP', serif;
+    font-size:15px;
+    color:#d9d4ba;
+    max-width:480px;
+    margin:0 auto;
+    line-height:2.1;
   }
 
   footer{
     background:var(--ink);
-    color:rgba(244,241,233,0.55);
-    padding:60px 6vw 40px;
-    font-size:12px;
-  }
-  .footer-inner{
-    max-width:1180px;
-    margin:0 auto;
-    display:flex;
-    justify-content:space-between;
-    flex-wrap:wrap;
-    gap:30px;
-  }
-  footer a{text-decoration:none;color:rgba(244,241,233,0.55);}
-  .footer-copy{
-    width:100%;
+    color:rgba(244,241,233,0.5);
     text-align:center;
-    margin-top:40px;
-    padding-top:24px;
-    border-top:1px solid rgba(244,241,233,0.12);
-    letter-spacing:0.1em;
+    padding:32px;
+    font-size:11px;
+    letter-spacing:0.15em;
   }
 
+  /* ===== RESPONSIVE ===== */
   @media (max-width:860px){
-    .product-card{grid-template-columns:1fr;gap:36px;}
-    nav .navlinks{display:none;}
-    .shop-hero{padding:140px 7vw 70px;}
-    .shop-list{padding:70px 7vw 100px;}
+    section{padding:90px 7vw;}
+    .concept-grid, .structure-grid{
+      grid-template-columns:1fr;
+      gap:48px;
+    }
+    .compare{grid-template-columns:1fr;}
+    .gallery-grid{grid-template-columns:1fr;}
+    .gallery-main{aspect-ratio:4/4;}
+    .gallery-side{flex-direction:row;}
+    .gallery-side-item{aspect-ratio:1/1;}
+    .scroll-hint{display:none;}
   }
 </style>
 </head>
@@ -224,49 +460,185 @@
   </ul>
 </nav>
 
-<div class="shop-hero">
-  <div class="shop-hero-inner">
-    <span class="eyebrow">自助具 SHOP</span>
-    <h1>手が不自由な方の暮らしを、もっと便利に。<br>本当に必要な場所にだけ、本当に必要な機能を。</h1>
+<!-- HERO -->
+<div class="hero">
+  <img src="hero.png" alt="sueglobe を装着したモデル">
+  <div class="hero-content">
+    <span class="eyebrow">Wrist Support Glove</span>
+    <h1 class="hero-title">sueglobe</h1>
+    <p class="hero-sub">こぐ力を、手首に。</p>
   </div>
+  <div class="scroll-hint">SCROLL</div>
 </div>
 
-<section class="shop-list">
-  <div class="shop-list-inner">
-    <a class="product-card" href="shop-sueglobe.html">
-      <div class="product-card-image">
-        <img src="hero.png" alt="sueglobe を装着したイメージ">
+<!-- CONCEPT -->
+<section id="concept" class="concept">
+  <div class="section-inner">
+    <div class="concept-grid">
+      <div class="concept-lead">
+        力の入らない手で車椅子をこぐとき、<br>
+        本当に必要なのは<br>
+        <span class="accent">手のひらの保護</span>ではなく、<br>
+        <span class="accent">手首のグリップ</span>でした。
       </div>
-      <div class="product-card-body">
-        <span class="eyebrow">Wrist Support Glove</span>
-        <h2>sueglobe</h2>
-        <p class="tagline">こぐ力を、手首に。</p>
-        <p class="desc">
-          車椅子を自分の力でこぐ人のために。本当に力が必要な場所は手首だった——その発見から生まれたグリップグローブです。糸を使わず面で接着する構造で、劣化の起点を作りません。
+      <div class="concept-body">
+        <p>
+          福祉用具らしさを消したい。そう思って sueglobe を設計しました。介助色でも医療色でもない、一枚の革のような佇まい。日常の中にそのまま置いても違和感のない、ノイズレスなデザインを目指しています。
         </p>
-        <span class="cta-link">商品詳細を見る <span class="arrow">→</span></span>
+        <p>
+          車椅子を自分でこぐ人にとって、グローブは毎日使う道具です。だからこそ機能だけでなく、身につけていて誇れる見た目であることにこだわりました。
+        </p>
       </div>
-    </a>
+    </div>
   </div>
 </section>
 
-<div class="order-note">
-  <p>オーダーメイドのご相談もお気軽にどうぞ。</p>
-  <a class="order-btn" href="https://www.sueseisakujo.com/contact.html">お問い合わせ・ご注文</a>
+<!-- POSITION -->
+<section class="position">
+  <div class="section-inner">
+    <div class="section-head">
+      <span class="eyebrow">Why the wrist</span>
+      <h2>力が伝わる場所は、<br>手のひらではなかった。</h2>
+    </div>
+
+    <div class="compare">
+      <div class="compare-col">
+        <div class="compare-label">Conventional Gloves</div>
+        <div class="hand-diagram">
+          <svg viewBox="0 0 200 200" fill="none">
+            <path d="M70 170 C60 140 55 110 60 80 C62 65 70 55 80 55 C88 55 92 65 92 78 L92 50 C92 40 100 32 108 32 C116 32 122 40 122 50 L122 78 C122 64 130 56 138 56 C146 56 152 64 152 78 L152 100 C152 100 158 95 160 110 C162 125 158 150 145 168 C135 180 90 182 70 170 Z" stroke="rgba(244,241,233,0.45)" stroke-width="1.4"/>
+            <ellipse cx="100" cy="135" rx="32" ry="26" fill="rgba(214,108,70,0.55)"/>
+            <text x="100" y="139" text-anchor="middle" font-size="10" fill="#f4f1e9" font-family="Zen Kaku Gothic New">滑り止め</text>
+          </svg>
+        </div>
+        <div class="compare-title">手のひらにゴム</div>
+        <p class="compare-text">グリップは強くなるが、こぐ動作の支点である手首は無防備なまま。力を伝えきれず、手首だけが疲労していく。</p>
+      </div>
+
+      <div class="compare-col is-correct">
+        <div class="compare-label">sueglobe</div>
+        <div class="hand-diagram">
+          <svg viewBox="0 0 200 200" fill="none">
+            <path d="M70 170 C60 140 55 110 60 80 C62 65 70 55 80 55 C88 55 92 65 92 78 L92 50 C92 40 100 32 108 32 C116 32 122 40 122 50 L122 78 C122 64 130 56 138 56 C146 56 152 64 152 78 L152 100 C152 100 158 95 160 110 C162 125 158 150 145 168 C135 180 90 182 70 170 Z" stroke="rgba(244,241,233,0.45)" stroke-width="1.4"/>
+            <ellipse cx="100" cy="172" rx="38" ry="20" fill="#cdbb6a"/>
+            <text x="100" y="176" text-anchor="middle" font-size="10" fill="#3a3a28" font-family="Zen Kaku Gothic New">滑り止め</text>
+          </svg>
+        </div>
+        <div class="compare-title">手首にゴム</div>
+        <p class="compare-text">実際に力をかけ続ける場所にグリップを集約。少ない力でも、こぐ動作にまっすぐ伝わる設計。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRUCTURE -->
+<section class="structure">
+  <div class="section-inner">
+    <div class="section-head">
+      <span class="eyebrow">Construction</span>
+      <h2>縫わない、という構造。</h2>
+    </div>
+
+    <div class="structure-grid">
+      <div class="structure-visual">
+        <img src="product_final.png" alt="sueglobe ディテール">
+        <div class="structure-caption">
+          <span>Hand-built</span>
+          <span>Chiba, Japan</span>
+        </div>
+      </div>
+
+      <div class="structure-points">
+        <div class="point">
+          <div class="point-mark"></div>
+          <div>
+            <h3>糸を、使わない。</h3>
+            <p>従来のグローブはゴムを糸で縫い付けます。針穴は小さな傷となり、ゴム本体が摩耗しきる前に糸の部分から裂けてしまうことがあります。</p>
+          </div>
+        </div>
+        <div class="point">
+          <div class="point-mark"></div>
+          <div>
+            <h3>面で、接着する。</h3>
+            <p>sueglobe は強力な接着剤でゴムを面ごと固定。穴を開けないから、劣化の起点を作りません。</p>
+          </div>
+        </div>
+        <div class="point">
+          <div class="point-mark"></div>
+          <div>
+            <h3>マジックテープで、着脱自由。</h3>
+            <p>本体はマジックテープ固定。ゆるみ調節も、着脱も、ワンタッチで完結します。</p>
+          </div>
+        </div>
+        <div class="point">
+          <div class="point-mark"></div>
+          <div>
+            <h3>2つの穴で、手のサイズに合わせる。</h3>
+            <p>先端には穴が2つ。手の小さい方は下側の穴、標準的なサイズの方は上側の穴を通してベルトを留めます。男性で小さめの手の場合は端の穴を使う、というのが目安です。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING PHILOSOPHY -->
+<section class="pricing">
+  <div class="pricing-inner">
+    <span class="eyebrow">On replacement</span>
+    <h2>張り替えない。<br>消耗したら、買い替える。</h2>
+    <div class="pricing-rule"></div>
+    <p>
+      ゴムの張り替えには、想像以上の時間と費用がかかります。sueglobe はそもそも張り替えを前提にしていません。価格は従来品の「ゴム張り替え」とほぼ同水準に設定し、消耗したら気負わず新しい一本に替えられる。それくらい気軽な距離感を目指しました。
+    </p>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery">
+  <div class="section-inner">
+    <div class="section-head">
+      <span class="eyebrow">Look & Detail</span>
+      <h2>sueglobe、その姿。</h2>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-main">
+        <img src="hero.png" alt="sueglobe イメージカット">
+      </div>
+      <div class="gallery-side">
+        <div class="gallery-side-item">
+          <img src="product_final.png" alt="sueglobe 実物写真">
+        </div>
+      </div>
+    </div>
+    <p class="note-strip">
+      ※ イメージカットは製品の装着イメージを伝えるための参考写真であり、着用しているグローブは sueglobe とは別のサンプル品です。
+    </p>
+  </div>
+</section>
+
+<!-- CLOSER -->
+<div class="closer">
+  <span class="eyebrow">sueglobe</span>
+  <h2 class="serif-en">A grip,<br>where it matters.</h2>
+  <p>本当に必要な場所にだけ、本当に必要な力を。</p>
 </div>
 
-<footer>
-  <div class="footer-inner">
+<footer style="background:var(--ink);color:rgba(244,241,233,0.55);padding:60px 6vw 40px;font-size:12px;text-align:left;letter-spacing:0.03em;">
+  <div style="max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;">
     <div>
-      <a href="https://www.sueseisakujo.com/index.html">スエ製作所</a><br>
+      スエ製作所<br>
       大工の経験と、建築士としての専門知識で、<br>おしゃれだけではないこれからのリノベーションをご提案します。
     </div>
     <div>
-      TEL <a href="tel:0506878-5961">050-6878-5961</a><br>
-      MAIL <a href="mailto:suenaga@sueseisakujo.com">suenaga@sueseisakujo.com</a><br>
+      TEL <a href="tel:0506878-5961" style="color:inherit;text-decoration:none;">050-6878-5961</a><br>
+      MAIL <a href="mailto:suenaga@sueseisakujo.com" style="color:inherit;text-decoration:none;">suenaga@sueseisakujo.com</a><br>
       営業時間 10:00〜18:00（定休日なし）
     </div>
-    <div class="footer-copy">© 2026 スエ製作所</div>
+    <div style="width:100%;text-align:center;margin-top:30px;padding-top:24px;border-top:1px solid rgba(244,241,233,0.12);letter-spacing:0.1em;">
+      © 2026 スエ製作所
+    </div>
   </div>
 </footer>
 
