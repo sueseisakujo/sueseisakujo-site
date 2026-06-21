@@ -5,182 +5,184 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ホットスポット位置エディタ</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Noto Sans JP', sans-serif; background:#1a1a1a; }
+  * { box-sizing: border-box; margin:0; padding:0; }
+  body { font-family: 'Noto Sans JP', sans-serif; background:#1c1a18; color:#eee; padding:20px; }
+  h1 { font-size:16px; font-weight:400; margin-bottom:4px; }
+  .hint { font-size:12px; color:#999; margin-bottom:16px; line-height:1.7; }
+  .stage-wrap { position:relative; max-width:1000px; margin:0 auto; border:1px solid #444; }
+  .stage { position:relative; width:100%; overflow:hidden; touch-action:none; }
+  .stage img { width:100%; display:block; user-select:none; -webkit-user-drag:none; pointer-events:none; }
+  .pin {
+    position:absolute; transform:translate(-50%,-50%);
+    cursor:grab; touch-action:none; z-index:5;
+  }
+  .pin:active { cursor:grabbing; z-index:6; }
+  .pin .dot { width:14px; height:14px; border-radius:50%; background:#e07044; border:2px solid #fff; box-shadow:0 0 0 3px rgba(224,112,68,0.35); margin:0 auto; }
+  .pin .label {
+    margin-top:4px; background:rgba(20,18,16,0.82); color:#fff; font-size:11px;
+    padding:4px 9px; border-radius:3px; white-space:nowrap; text-align:center;
+    pointer-events:none;
+  }
+  .pin .label .sub { display:block; font-size:9px; color:#f0a98a; }
+  .pin.selected .dot { background:#fff; }
 
-  .hero-wrap {
-    position: relative;
-    width: 100%;
-    max-width: 1920px;
-    margin: 0 auto;
-  }
-  .hero-wrap img.hero-img {
-    width: 100%;
-    display: block;
-  }
+  .panel { max-width:1000px; margin:18px auto 0; background:#262320; border:1px solid #3a3632; border-radius:6px; padding:18px 20px; }
+  .panel h2 { font-size:13px; font-weight:400; margin-bottom:12px; color:#ccc; }
+  table { width:100%; border-collapse:collapse; font-size:12px; }
+  td, th { padding:7px 6px; border-bottom:1px solid #38342f; text-align:left; color:#bbb; }
+  th { color:#888; font-weight:400; font-size:11px; }
+  input[type=number] { width:62px; background:#181614; border:1px solid #444; color:#eee; padding:4px 6px; border-radius:3px; font-size:12px; }
+  .name-cell { color:#eee; }
 
-  .hotspot {
-    position: absolute;
-    cursor: grab;
-    padding: 6px 12px;
-    border-radius: 4px;
-    background: rgba(20,16,12,0.55);
-    outline: 1px dashed rgba(255,255,255,0.5);
-    user-select: none;
-    touch-action: none;
-  }
-  .hotspot:active { cursor: grabbing; background: rgba(224,112,68,0.65); }
-  .hotspot.dragging { background: rgba(224,112,68,0.75); outline: 2px solid #fff; z-index: 50; }
-  .hotspot-label {
-    font-size: 13px; color: #fff; font-weight: 300; letter-spacing: 0.04em;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.7); display: block; pointer-events:none;
-  }
-  .hotspot-sub {
-    font-size: 11px; color: rgba(255,255,255,0.8);
-    text-shadow: 0 1px 3px rgba(0,0,0,0.7); display: block; margin-top: 2px; pointer-events:none;
-  }
+  .actions { max-width:1000px; margin:16px auto 0; display:flex; gap:10px; flex-wrap:wrap; }
+  button { background:#e07044; color:#fff; border:none; padding:10px 18px; font-size:12px; border-radius:4px; cursor:pointer; }
+  button.secondary { background:#3a3632; color:#ccc; }
+  button:hover { opacity:0.88; }
 
-  #panel {
-    position: fixed;
-    top: 16px; right: 16px;
-    width: 280px;
-    max-height: 50vh;
-    overflow-y: auto;
-    background: rgba(20,20,15,0.85);
-    color: #f4f1e9;
-    padding: 14px 16px;
-    border-radius: 8px;
-    font-size: 11px;
-    line-height: 1.6;
-    z-index: 999;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  textarea {
+    width:100%; max-width:1000px; margin:14px auto 0; display:block;
+    background:#111; color:#9fe09f; font-family:monospace; font-size:11.5px;
+    border:1px solid #444; border-radius:4px; padding:12px; min-height:220px;
+    white-space:pre; line-height:1.6;
   }
-  #panel h3 { font-size: 14px; margin-bottom: 10px; }
-  #panel .item { margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid rgba(244,241,233,0.15); }
-  #panel .item b { color: #e8c878; }
-  #panel code { display:block; background:rgba(0,0,0,0.3); padding:6px 8px; border-radius:4px; margin-top:4px; font-size:11px; word-break:break-all; }
-  #panel .hint { color:#cfcab0; font-size:11px; margin-top:14px; }
-  #panel.collapsed { width: auto; max-height: none; padding: 10px 14px; }
-  #panel.collapsed #panelBody { display: none; }
-  #toggleBtn {
-    background: #e8c878; color:#1a1a1a; border:none; border-radius:4px;
-    padding:5px 10px; font-size:11px; cursor:pointer; margin-bottom:8px;
-  }
+  .copied { color:#9fe09f; font-size:11px; margin-left:8px; }
 </style>
 </head>
 <body>
 
-<div class="hero-wrap" id="heroWrap">
-  <img class="hero-img" src="https://www.sueseisakujo.com/hero-entrance.jpeg" alt="スエ製作所 施工写真">
+<h1>ホットスポット位置エディタ</h1>
+<p class="hint">点をドラッグして位置を調整してください（スマホでもタッチでドラッグ可）。下の表やコード出力にリアルタイムで反映されます。調整が終わったら「コードを出力」→ 表示されたコードを index.html の該当部分に貼り替えてください。</p>
 
-  <a class="hotspot" data-id="cove" data-href="room-cove0607.html"
-     style="left:calc(840/1920*100% - 60px); top:calc(108/1080*100% - 16px);">
-    <span class="hotspot-label">コーブ照明</span>
-    <span class="hotspot-sub">Cove Lighting</span>
-  </a>
-
-  <a class="hotspot" data-id="hokusai" data-href="room-hokusai0607.html"
-     style="left:calc(396/1920*100% - 100px); top:calc(30.3% - 16px);">
-    <span class="hotspot-label">葛飾北斎「神奈川県沖浪裏」</span>
-    <span class="hotspot-sub">3Dプリンター製 組子アート</span>
-  </a>
-
-  <a class="hotspot" data-id="sash" data-href="room-sash0607.html"
-     style="left:calc(72.8% - 80px); top:calc(63.7% - 16px);">
-    <span class="hotspot-label">大開口トリプルサッシ</span>
-    <span class="hotspot-sub">Triple-glazed Sliding Door</span>
-  </a>
-
-  <a class="hotspot" data-id="table" data-href="room-table0607.html"
-     style="left:calc(50.1% - 80px); top:calc(70.4% - 16px);">
-    <span class="hotspot-label">壁一体タイルテーブル</span>
-    <span class="hotspot-sub">Built-in Tile Table</span>
-  </a>
-
-  <a class="hotspot" data-id="desk" data-href="room-desk0607.html"
-     style="left:calc(92.3% - 60px); top:calc(63.7% - 16px);">
-    <span class="hotspot-label">柱無しデスク</span>
-    <span class="hotspot-sub">Pillar-free Desk</span>
-  </a>
-
-  <a class="hotspot" data-id="ac" data-href="room-ac0607.html"
-     style="left:calc(29.9% - 60px); top:calc(79.5% - 16px);">
-    <span class="hotspot-label">床上エアコン</span>
-    <span class="hotspot-sub">Floor-level Air Conditioning</span>
-  </a>
-</div>
-
-<div id="panel">
-  <button id="toggleBtn">隠す/表示</button>
-  <div id="panelBody">
-    <h3>ラベル位置エディタ</h3>
-    <div class="hint">各ラベルをドラッグして好きな位置に動かしてください。下に現在の座標(%)が自動更新されます。終わったら全部のコードをまとめてコピーして教えてください。ラベルがこのパネルに隠れる場合は上の「隠す/表示」ボタンでパネルを一時的に小さくできます。</div>
-    <div id="coords" style="margin-top:14px;"></div>
+<div class="stage-wrap">
+  <div class="stage" id="stage">
+    <img src="hero-entrance.jpeg" id="stageImg" alt="hero">
+    <!-- pins injected by JS -->
   </div>
 </div>
 
-<script>
-  document.getElementById('toggleBtn').addEventListener('click', () => {
-    document.getElementById('panel').classList.toggle('collapsed');
-  });
-</script>
+<div class="panel">
+  <h2>座標一覧（%）</h2>
+  <table id="coordTable">
+    <thead><tr><th>名前</th><th>left %</th><th>top %</th></tr></thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<div class="actions">
+  <button id="genBtn">コードを出力</button>
+  <button class="secondary" id="resetBtn">初期位置にリセット</button>
+  <span class="copied" id="copiedMsg"></span>
+</div>
+
+<textarea id="output" readonly placeholder="「コードを出力」を押すとここにHTMLが表示されます"></textarea>
 
 <script>
-  const wrap = document.getElementById('heroWrap');
-  const hotspots = document.querySelectorAll('.hotspot');
-  const coordsPanel = document.getElementById('coords');
-  const labels = {
-    cove: 'コーブ照明',
-    hokusai: '葛飾北斎',
-    sash: '大開口トリプルサッシ',
-    table: '壁一体タイルテーブル',
-    desk: '柱無しデスク',
-    ac: '床上エアコン'
-  };
+const spots = [
+  { id:'cove',    href:'room-cove0607.html',     jp:'コーブ照明',              en:'Cove Lighting',                left:38, top:4 },
+  { id:'hokusai', href:'room-hokusai0607.html',  jp:'葛飾北斎「神奈川県沖浪裏」', en:'3Dプリンター製 組子アート',      left:27, top:19 },
+  { id:'sash',    href:'room-sash0607.html',     jp:'大開口トリプルサッシ',      en:'Triple-glazed Sliding Door',     left:64, top:21 },
+  { id:'table',   href:'room-table0607.html',    jp:'壁一体タイルテーブル',      en:'Built-in Tile Table',            left:34, top:47 },
+  { id:'desk',    href:'room-desk0607.html',     jp:'柱無しデスク',             en:'Pillar-free Desk',               left:50, top:60 },
+  { id:'ac',      href:'room-ac0607.html',       jp:'床上エアコン',             en:'Floor-level Air Conditioning',   left:6,  top:56 },
+];
+const initial = JSON.parse(JSON.stringify(spots));
 
-  let dragTarget = null;
-  let offsetX = 0, offsetY = 0;
+const stage = document.getElementById('stage');
+const tbody = document.querySelector('#coordTable tbody');
 
-  hotspots.forEach(el => {
-    el.addEventListener('pointerdown', e => {
-      dragTarget = el;
-      el.classList.add('dragging');
-      const rect = el.getBoundingClientRect();
-      offsetX = e.clientX - rect.left;
-      offsetY = e.clientY - rect.top;
-      el.setPointerCapture(e.pointerId);
-    });
-    el.addEventListener('pointermove', e => {
-      if (dragTarget !== el) return;
-      const wrapRect = wrap.getBoundingClientRect();
-      let x = e.clientX - wrapRect.left - offsetX;
-      let y = e.clientY - wrapRect.top - offsetY;
-      // convert to % of wrap size, anchored at element's own left/top (not center)
-      const pctX = (x / wrapRect.width) * 100;
-      const pctY = (y / wrapRect.height) * 100;
-      el.style.left = pctX.toFixed(2) + '%';
-      el.style.top = pctY.toFixed(2) + '%';
-      updateCoords();
-    });
-    el.addEventListener('pointerup', e => {
-      if (dragTarget === el) {
-        dragTarget = null;
-        el.classList.remove('dragging');
-      }
-    });
+function buildPins() {
+  stage.querySelectorAll('.pin').forEach(p => p.remove());
+  spots.forEach(s => {
+    const pin = document.createElement('div');
+    pin.className = 'pin';
+    pin.dataset.id = s.id;
+    pin.style.left = s.left + '%';
+    pin.style.top = s.top + '%';
+    pin.innerHTML = `<div class="dot"></div><div class="label">${s.jp}<span class="sub">${s.en}</span></div>`;
+    stage.appendChild(pin);
+    makeDraggable(pin, s);
   });
+}
 
-  function updateCoords(){
-    let html = '';
-    hotspots.forEach(el => {
-      const id = el.dataset.id;
-      const left = el.style.left;
-      const top = el.style.top;
-      html += `<div class="item"><b>${labels[id]}</b><code>left:${left}; top:${top};</code></div>`;
-    });
-    coordsPanel.innerHTML = html;
+function makeDraggable(pin, s) {
+  let dragging = false;
+  function toPercent(clientX, clientY) {
+    const rect = stage.getBoundingClientRect();
+    let left = (clientX - rect.left) / rect.width * 100;
+    let top = (clientY - rect.top) / rect.height * 100;
+    left = Math.max(0, Math.min(100, left));
+    top = Math.max(0, Math.min(100, top));
+    return { left, top };
   }
-  updateCoords();
+  function start(e) {
+    dragging = true;
+    pin.classList.add('selected');
+    e.preventDefault();
+  }
+  function move(e) {
+    if (!dragging) return;
+    const point = e.touches ? e.touches[0] : e;
+    const { left, top } = toPercent(point.clientX, point.clientY);
+    s.left = Math.round(left * 10) / 10;
+    s.top = Math.round(top * 10) / 10;
+    pin.style.left = s.left + '%';
+    pin.style.top = s.top + '%';
+    updateTable();
+  }
+  function end() {
+    dragging = false;
+    pin.classList.remove('selected');
+  }
+  pin.addEventListener('mousedown', start);
+  window.addEventListener('mousemove', move);
+  window.addEventListener('mouseup', end);
+  pin.addEventListener('touchstart', start, { passive:false });
+  window.addEventListener('touchmove', move, { passive:false });
+  window.addEventListener('touchend', end);
+}
+
+function updateTable() {
+  tbody.innerHTML = '';
+  spots.forEach(s => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="name-cell">${s.jp}</td>
+      <td><input type="number" step="0.1" value="${s.left}" data-id="${s.id}" data-axis="left"></td>
+      <td><input type="number" step="0.1" value="${s.top}" data-id="${s.id}" data-axis="top"></td>
+    `;
+    tbody.appendChild(tr);
+  });
+  tbody.querySelectorAll('input').forEach(inp => {
+    inp.addEventListener('input', () => {
+      const s = spots.find(x => x.id === inp.dataset.id);
+      s[inp.dataset.axis] = parseFloat(inp.value) || 0;
+      const pin = stage.querySelector(`.pin[data-id="${s.id}"]`);
+      pin.style.left = s.left + '%';
+      pin.style.top = s.top + '%';
+    });
+  });
+}
+
+function generateCode() {
+  let out = '';
+  spots.forEach(s => {
+    out += `  <a class="hotspot" href="${s.href}"\n     style="left:${s.left}%; top:${s.top}%;">\n    <span class="hotspot-label">${s.jp}</span>\n    <span class="hotspot-sub">${s.en}</span>\n  </a>\n\n`;
+  });
+  document.getElementById('output').value = out.trim();
+  const msg = document.getElementById('copiedMsg');
+  msg.textContent = '出力しました。下のテキストエリアをコピーしてindex.htmlに貼り替えてください。';
+  setTimeout(() => msg.textContent = '', 4000);
+}
+
+document.getElementById('genBtn').addEventListener('click', generateCode);
+document.getElementById('resetBtn').addEventListener('click', () => {
+  spots.forEach((s,i) => { s.left = initial[i].left; s.top = initial[i].top; });
+  buildPins();
+  updateTable();
+});
+
+buildPins();
+updateTable();
 </script>
 
 </body>
