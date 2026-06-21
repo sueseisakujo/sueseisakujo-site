@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>コラム | スエ製作所</title>
-  <meta name="description" content="大工×建築士の視点で綴る、暮らしの工夫やリノベーションのコラム。3Dプリンターでの自助具づくり、車椅子生活の知恵、木造建築の未来など。">
+  <meta name="description" content="大工×建築士の視点で綴る、暮らしの工夫やリノベーションのコラム。木造建築の未来、3Dプリンターでのものづくりなど。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
   <style>
@@ -21,15 +21,15 @@
     .page-header h1 { font-family: 'Noto Serif JP', serif; font-size: 28px; font-weight: 300; letter-spacing: 0.06em; margin-bottom: 16px; }
     .page-header p { font-size: 14px; line-height: 2.1; color: #555; max-width: 600px; }
 
-    .column-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #e8e8e8; }
+    .column-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: #e8e8e8; max-width: 920px; margin: 0 auto; }
     .column-card { background: #fff; text-decoration: none; color: inherit; display: block; transition: opacity .2s; }
     .column-card:hover { opacity: 0.85; }
     .column-card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
-    .column-card-body { padding: 20px 24px 28px; }
+    .column-card-body { padding: 24px 28px 32px; }
     .column-card-tag { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #e07044; margin-bottom: 8px; }
-    .column-card h3 { font-family: 'Noto Serif JP', serif; font-size: 16px; font-weight: 400; letter-spacing: 0.04em; margin-bottom: 8px; line-height: 1.5; }
-    .column-card p { font-size: 12px; line-height: 1.9; color: #666; }
-    .column-card-arrow { font-size: 12px; color: #e07044; margin-top: 12px; display: block; }
+    .column-card h3 { font-family: 'Noto Serif JP', serif; font-size: 17px; font-weight: 400; letter-spacing: 0.04em; margin-bottom: 10px; line-height: 1.5; }
+    .column-card p { font-size: 12.5px; line-height: 1.9; color: #666; }
+    .column-card-arrow { font-size: 12px; color: #e07044; margin-top: 14px; display: block; }
 
     .cta-section { padding: 72px 40px; text-align: center; border-top: 1px solid #e8e8e8; }
     .cta-section h2 { font-family: 'Noto Serif JP', serif; font-size: 22px; font-weight: 300; margin-bottom: 16px; }
@@ -77,34 +77,25 @@
 <div class="page-header">
   <div class="label">Column</div>
   <h1>コラム</h1>
-  <p>大工としての経験、建築士としての視点、そして車椅子での暮らし。その中で見えてきたことを、ゆるやかに綴っています。</p>
+  <p>大工としての経験、建築士としての視点。その中で見えてきたことを、ゆるやかに綴っています。</p>
 </div>
 
 <div class="column-grid">
-  <a class="column-card" href="column-3dprint.html">
-    <img src="https://static.wixstatic.com/media/7cabd4_834ebf22630f4a4782049495d7832b8d~mv2.jpg" alt="3Dプリンターで暮らしの不便を解決">
-    <div class="column-card-body">
-      <div class="column-card-tag">3D Print / Life</div>
-      <h3>障がいとともに生きる工夫</h3>
-      <p>ヘアドライヤーの固定からコーヒーフィルターの収納まで。3Dプリンターで「ちょっとした不便」を解決する。</p>
-      <span class="column-card-arrow">詳しく見る →</span>
-    </div>
-  </a>
-  <a class="column-card" href="column-wheelchair-winter.html">
-    <img src="https://static.wixstatic.com/media/7cabd4_0ae7f955554c4bd9a3ebce78bd6f100e~mv2.jpg" alt="車椅子と冬の寒さ対策">
-    <div class="column-card-body">
-      <div class="column-card-tag">Life / Wellness</div>
-      <h3>車椅子と、冬の寒さの話</h3>
-      <p>頸椎損傷による体温調節の難しさ。それでも快適に過ごすための、暮らしの中の小さな工夫。</p>
-      <span class="column-card-arrow">詳しく見る →</span>
-    </div>
-  </a>
   <a class="column-card" href="column-wood-architecture.html">
     <img src="https://static.wixstatic.com/media/7cabd4_d24f1d4d5f08405e874dcbf8a5d41895~mv2.jpg" alt="木造建築とCO2">
     <div class="column-card-body">
       <div class="column-card-tag">Architecture</div>
       <h3>大工×建築士の視点で見る、木造建築の未来</h3>
       <p>木を使った建築が増えている理由。デザイン性だけではない、CO2と木材のいい関係。</p>
+      <span class="column-card-arrow">詳しく見る →</span>
+    </div>
+  </a>
+  <a class="column-card" href="column-kawaii-cablecover.html">
+    <img src="kawaii-cablecover.jpeg" alt="3Dプリンターで作った配線カバーアート">
+    <div class="column-card-body">
+      <div class="column-card-tag">Art / 3D Print</div>
+      <h3>玄関口の「何だこれ？」の件。</h3>
+      <p>太陽光発電の配線隠しに、3Dプリンターで「かわいい」を作ってみた制作記録。</p>
       <span class="column-card-arrow">詳しく見る →</span>
     </div>
   </a>
