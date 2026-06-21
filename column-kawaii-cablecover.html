@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>玄関口の「何だこれ？」の件 — スエ製作所</title>
+  <meta name="description" content="太陽光発電の屋内配線を隠すために、3Dプリンターでオリジナルのカバーアートを製作。サンリオ展の「かわいい」と草間弥生の「連続する有機体」から着想を得た、きのこ型オブジェの制作記録。">
+  <meta name="robots" content="index, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans JP', sans-serif; font-weight: 300; color: #2c2c2c; background: #fff; -webkit-font-smoothing: antialiased; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: #fff; border-bottom: 1px solid #e8e8e8;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px; height: 60px;
+    }
+    .logo img { height: 36px; display: block; }
+    .nav-links { display: flex; list-style: none; }
+    .nav-links a { display: block; padding: 0 16px; line-height: 60px; font-size: 12px; text-decoration: none; color: #666; transition: color .2s; }
+    .nav-links a:hover { color: #e07044; }
+    .hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 28px; height: 28px; cursor: pointer; background: none; border: none; padding: 0; }
+    .hamburger span { display: block; width: 100%; height: 2px; background: #2c2c2c; transition: transform .25s, opacity .25s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; top: 0; right: 0; width: 240px; height: 100%; background: #fff; box-shadow: -2px 0 12px rgba(0,0,0,.12); z-index: 999; padding: 70px 0 20px; transform: translateX(100%); transition: transform .25s ease; }
+    .mobile-menu.open { display: block; transform: translateX(0); }
+    .mobile-menu ul { list-style: none; }
+    .mobile-menu a { display: block; padding: 14px 24px; font-size: 13px; color: #444; text-decoration: none; border-bottom: 1px solid #f0f0f0; }
+    .mobile-menu a:hover { color: #e07044; }
+    .menu-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.3); z-index: 998; }
+    .menu-overlay.open { display: block; }
+
+    .hero-photo { position: relative; width: 100%; height: 62vh; min-height: 380px; max-height: 640px; overflow: hidden; background: #111; }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.92; }
+    .hero-photo .hero-gradient { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.05) 40%, rgba(15,12,10,0.55) 75%, rgba(10,8,7,0.82) 100%); }
+    .hero-overlay { position: absolute; left: 0; right: 0; bottom: 0; padding: 32px 40px 38px; }
+    .hero-overlay .page-tag { color: #f0a98a; }
+    .hero-overlay h1 { font-family: 'Noto Serif JP', serif; font-size: 28px; font-weight: 400; letter-spacing: 0.04em; line-height: 1.6; color: #fff; text-shadow: 0 2px 14px rgba(0,0,0,0.4); margin-bottom: 10px; }
+    .hero-overlay .meta { font-size: 12px; color: #e8e0da; }
+
+    .breadcrumb { padding: 16px 40px; font-size: 11px; color: #999; }
+    .breadcrumb a { color: #999; text-decoration: none; }
+    .breadcrumb a:hover { color: #e07044; }
+
+    .page-head { padding: 36px 40px 44px; border-bottom: 1px solid #e8e8e8; }
+    .page-tag { display: inline-block; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #e07044; margin-bottom: 14px; }
+    .page-head .lead { font-size: 14px; line-height: 2.1; color: #555; max-width: 680px; }
+
+    .section { padding: 50px 40px; }
+    .section-inner { max-width: 760px; margin: 0 auto; }
+    h2 { font-family: 'Noto Serif JP', serif; font-size: 20px; font-weight: 400; letter-spacing: 0.04em; color: #2c2c2c; margin-bottom: 18px; line-height: 1.7; }
+    p { font-size: 14.5px; line-height: 2.15; color: #555; margin-bottom: 18px; }
+
+    .photo-wrap { margin: 34px 0; }
+    .photo-wrap img { width: 100%; display: block; border: 1px solid #e8e8e8; }
+    .photo-caption { font-size: 12px; color: #888; margin-top: 10px; line-height: 1.8; }
+    .photo-caption b { color: #e07044; font-weight: 400; }
+
+    .inspo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #e8e8e8; margin: 30px 0; }
+    .photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 30px 0 0; }
+    .photo-grid img { width: 100%; display: block; border: 1px solid #e8e8e8; }
+    .inspo-card { background: #fff; padding: 26px 24px; }
+    .inspo-card .num { font-family: 'Noto Serif JP', serif; font-size: 26px; color: #e8d9d0; margin-bottom: 8px; }
+    .inspo-card h3 { font-family: 'Noto Serif JP', serif; font-size: 15px; font-weight: 400; margin-bottom: 10px; }
+    .inspo-card p { font-size: 13px; margin-bottom: 0; }
+
+    .quote-block { border-left: 3px solid #e07044; padding: 4px 0 4px 22px; margin: 30px 0; }
+    .quote-block p { font-size: 15px; line-height: 2.0; color: #2c2c2c; margin-bottom: 0; }
+
+    .tag-row { margin-top: 30px; display: flex; gap: 8px; flex-wrap: wrap; }
+    .tag-row span { font-size: 11px; color: #999; border: 1px solid #e0e0e0; border-radius: 999px; padding: 4px 12px; }
+
+    .related-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: #e8e8e8; margin-top: 28px; }
+    .related-grid a { background: #fff; text-decoration: none; color: inherit; display: block; padding: 22px; }
+    .related-grid .rel-tag { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #e07044; margin-bottom: 6px; }
+    .related-grid .rel-title { font-size: 13px; font-family: 'Noto Serif JP', serif; }
+
+    .back-link { display: inline-block; margin-top: 8px; font-size: 13px; color: #555; text-decoration: none; }
+    .back-link:hover { color: #e07044; }
+
+    footer { background: #2c2c2c; color: #aaa; padding: 36px 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .footer-logo img { height: 26px; filter: brightness(0) invert(1); opacity: .35; }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-links a { font-size: 12px; color: #888; text-decoration: none; transition: color .2s; }
+    .footer-links a:hover { color: #e07044; }
+    .footer-copy { font-size: 11px; color: #666; }
+
+    @media (max-width: 720px) {
+      nav { padding: 0 16px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .breadcrumb { padding: 12px 20px; }
+      .page-head { padding: 26px 20px 32px; }
+      .hero-photo { height: 48vh; min-height: 300px; }
+      .hero-overlay { padding: 22px 20px 26px; }
+      .hero-overlay h1 { font-size: 21px; }
+      .section { padding: 40px 20px; }
+      .inspo-grid, .related-grid, .photo-grid { grid-template-columns: 1fr; }
+      footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">
+    <img src="https://static.wixstatic.com/media/7cabd4_553905c9178440c389e0c285dbb5fe16~mv2.png" alt="スエ製作所">
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">HOME</a></li>
+    <li><a href="works.html">施工実績</a></li>
+    <li><a href="column.html">コラム</a></li>
+    <li><a href="shop.html">SHOP</a></li>
+    <li><a href="about.html">自己紹介</a></li>
+    <li><a href="contact.html">お問い合わせ</a></li>
+    <li><a href="プリンター.html">3Dプリンター製作</a></li>
+  </ul>
+  <button class="hamburger" id="hamburgerBtn" aria-label="メニュー">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="menu-overlay" id="menuOverlay"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="index.html">HOME</a></li>
+    <li><a href="works.html">施工実績</a></li>
+    <li><a href="column.html">コラム</a></li>
+    <li><a href="shop.html">SHOP</a></li>
+    <li><a href="about.html">自己紹介</a></li>
+    <li><a href="contact.html">お問い合わせ</a></li>
+    <li><a href="プリンター.html">3Dプリンター製作</a></li>
+  </ul>
+</div>
+
+<div class="breadcrumb"><a href="index.html">HOME</a> ／ <a href="column.html">コラム</a> ／ 玄関口の「何だこれ？」の件</div>
+
+<div class="hero-photo">
+  <img src="kawaii-cablecover.jpg" alt="廊下の天井際、エアコン脇に設置された3Dプリンター製のきのこ型配線カバー。赤丸で位置を示している。">
+  <div class="hero-gradient"></div>
+  <div class="hero-overlay">
+    <span class="page-tag">Art / 3D Print</span>
+    <h1>玄関口の<br>「何だこれ？」の件。</h1>
+    <div class="meta">スエ製作所 / 3Dプリンターアート</div>
+  </div>
+</div>
+
+<div class="page-head">
+  <p class="lead">太陽光発電を導入したとき、地味に頭を悩ませたのが屋内に引き込む配線の処理でした。エアコンの上を這わせて天井際を通すしかなく、そのままだとただの配管がむき出しになる。どうせ隠すなら、見るたびにちょっと嬉しくなるものにしたいと思い、3Dプリンターでオリジナルのカバーを作ることにしました。玄関を入ってふと天井を見上げた人が「何だこれ？」となる、そんな小さな仕掛けです。</p>
+</div>
+
+<section class="section">
+  <div class="section-inner">
+    <h2>きっかけは、2つの「好き」</h2>
+    <p>配線を隠すだけならただのモールやカバー材で十分です。でもせっかく自分でデザインできるなら、と考えているうちに、最近自分の中で気になっていた2つのモチーフが浮かんできました。</p>
+
+    <div class="inspo-grid">
+      <div class="inspo-card">
+        <div class="num">01</div>
+        <h3>サンリオ展の「かわいい」</h3>
+        <p>「かわいい」を真正面から学ぶのは、正直すこし勇気が要りました。それでも食わず嫌いせずにサンリオの展示へ足を運んでみると、そこには「かわいい」という造形がどう作られているかのロジックが詰まっていて、妙に感心してしまいました。丸み、ツヤ、左右非対称の揺らぎ——理屈ではなく「なんかかわいい」と感じさせる作り方を、自分の制作にも取り入れたくなりました。</p>
+      </div>
+      <div class="inspo-card">
+        <div class="num">02</div>
+        <h3>草間弥生の「連続する有機体」</h3>
+        <p>水玉や触手のようなモチーフが連続して増殖していく構成。配線を1本のカバーで隠すのではなく、小さな有機体を連続させて、配管全体をオブジェに変えてしまうというアプローチがここから生まれました。</p>
+      </div>
+    </div>
+
+    <div class="photo-grid">
+      <div class="photo-wrap" style="margin:0;">
+        <img src="sanrio-expo-1.jpg" alt="サンリオ展の展示風景。月刊いちご新聞の歴代表紙がキューブ状に展示されている。">
+      </div>
+      <div class="photo-wrap" style="margin:0;">
+        <img src="sanrio-expo-2.jpg" alt="サンリオ展のいちご新聞誌面の展示。マンガタッチのキャラクター紹介ページ。">
+      </div>
+    </div>
+    <div class="photo-caption">サンリオ展にて。「いちご新聞」の歴代誌面に詰め込まれた、丸みとツヤのあるキャラクター造形が今回の出発点でした。</div>
+
+    <div class="quote-block">
+      <p>実用と表現を両立させる方法として、「かわいいきのこを連続させる」という形に行き着きました。</p>
+    </div>
+
+    <p>1つ1つは小さな、丸みを帯びたきのこのようなパーツ。それを配管に沿って連続させることで、無機質な配線が、有機的に増殖するオブジェへと姿を変えます。3Dプリンターなら、同じ形を量産しながら少しずつ向きや角度を変えられるので、この「連続する有機体」を再現するのにちょうど向いていました。</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-inner">
+    <h2>施工の様子</h2>
+    <p>配線を覆う前段階、下地となる木製のレールを廊下のコーナーに沿って取り付けているところです。この棒材には等間隔に45度の溝を刻んであり、3Dプリンターで出力したパーツをその溝に差し込んでいくだけ、という単純な仕組みにしています。</p>
+
+    <div class="photo-grid">
+      <div class="photo-wrap" style="margin:0;">
+        <img src="construction-progress-1.jpg" alt="施工途中の様子。廊下の出隅に沿って取り付けられた、等間隔に45度の溝を刻んだ木製のレール。下にはエアコンと加湿器が見える。">
+      </div>
+      <div class="photo-wrap" style="margin:0;">
+        <img src="construction-progress-2.jpg" alt="施工途中の様子その2。木製レールの端部と、赤い金具での固定箇所が見える。">
+      </div>
+    </div>
+    <div class="photo-caption">等間隔で45度に刻んだ溝。この1本1本に、3Dプリンターのパーツを差し込んでいきます。</div>
+
+    <div class="quote-block">
+      <p>木材に45度で溝を彫って、そこに3Dプリンターのパーツを差し込んでいるだけ。仕組みとしてはとてもシンプルです。</p>
+    </div>
+
+    <p>接着剤もビスも使わず、溝に差し込むだけの固定方法にしているのがポイントです。45度の角度を付けているのは、ただ垂直に挿すよりも力がかかったときに抜けにくく、かつ見る角度によってパーツの陰影が変わって表情が出るため。1パーツが壊れても、抜いて差し替えるだけで直せるので、メンテナンス性も兼ねた施工方法です。木工の下地さえ作ってしまえば、あとは3Dプリンターでパーツを量産して差し込んでいくだけ——大工仕事と3Dプリンターをつなぐ、ちょうどいい接点だと思っています。</p>
+  </div>
+</section>
+
+<section class="section gray" style="background:#f9f9f9;">
+  <div class="section-inner">
+    <h2>取り付けてみた</h2>
+    <p>エアコン脇、配線が壁を立ち上がる場所に実際に取り付けた様子は、記事冒頭の写真の通りです。赤丸の部分が、3Dプリンターで製作したきのこ型のカバーオブジェ。廊下の奥、視線がふと止まる場所に置くことで、配線処理という地味な作業の跡が、ちょっとしたお気に入りのポイントに変わりました。</p>
+
+    <p>普段は隠してしまうような場所こそ、手をかける価値がある。配線処理のような「地味だけど避けて通れない作業」に、かわいさや表現を持ち込めるのが、3Dプリンターでものづくりをする面白さだと思っています。</p>
+
+    <div class="tag-row">
+      <span>3Dプリンター</span>
+      <span>太陽光発電</span>
+      <span>配線隠し</span>
+      <span>かわいい</span>
+      <span>草間弥生</span>
+      <span>サンリオ</span>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-inner">
+    <h2>他のコラム・施工実績も見る</h2>
+    <div class="related-grid">
+      <a href="room-hokusai0607.html">
+        <div class="rel-tag">Art / 3D Print</div>
+        <div class="rel-title">葛飾北斎「神奈川沖浪裏」組子アート</div>
+      </a>
+      <a href="room-ac0607.html">
+        <div class="rel-tag">Climate / Passive Design</div>
+        <div class="rel-title">床上エアコン「頭寒足熱」の仕組み</div>
+      </a>
+      <a href="column.html">
+        <div class="rel-tag">All Columns</div>
+        <div class="rel-title">コラム一覧を見る →</div>
+      </a>
+    </div>
+    <a href="column.html" class="back-link">← コラム一覧へ戻る</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo"><img src="https://static.wixstatic.com/media/7cabd4_553905c9178440c389e0c285dbb5fe16~mv2.png" alt="スエ製作所"></div>
+  <div class="footer-links">
+    <a href="works.html">施工実績</a>
+    <a href="column.html">コラム</a>
+    <a href="shop.html">SHOP</a>
+    <a href="about.html">自己紹介</a>
+    <a href="contact.html">お問い合わせ</a>
+    <a href="プリンター.html">3Dプリンター製作</a>
+    <a href="#">FAQ</a>
+    <a href="#">特定商取引に基づく表記</a>
+  </div>
+  <div class="footer-copy">© 2024 スエ製作所</div>
+</footer>
+
+<script>
+  const hb = document.getElementById('hamburgerBtn');
+  const menu = document.getElementById('mobileMenu');
+  const overlay = document.getElementById('menuOverlay');
+  function closeMenu() {
+    hb.classList.remove('open');
+    menu.classList.remove('open');
+    overlay.classList.remove('open');
+  }
+  hb.addEventListener('click', () => {
+    const isOpen = menu.classList.contains('open');
+    if (isOpen) { closeMenu(); } else {
+      hb.classList.add('open');
+      menu.classList.add('open');
+      overlay.classList.add('open');
+    }
+  });
+  overlay.addEventListener('click', closeMenu);
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+</script>
+
+</body>
+</html>
