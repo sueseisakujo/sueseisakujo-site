@@ -166,33 +166,6 @@
   hb.addEventListener('click', () => { const isOpen = menu.classList.contains('open'); if (isOpen) { closeMenu(); } else { hb.classList.add('open'); menu.classList.add('open'); overlay.classList.add('open'); } });
   overlay.addEventListener('click', closeMenu);
   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
-
-  // Formspree AJAX送信
-  const form = document.getElementById('contactForm');
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const btn = form.querySelector('.btn-submit');
-    btn.textContent = '送信中...';
-    btn.disabled = true;
-    try {
-      const res = await fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
-      });
-      if (res.ok) {
-        form.reset();
-        document.getElementById('thanksMsg').style.display = 'block';
-        btn.textContent = '送信しました';
-      } else {
-        btn.textContent = 'エラーが発生しました';
-        btn.disabled = false;
-      }
-    } catch {
-      btn.textContent = 'エラーが発生しました';
-      btn.disabled = false;
-    }
-  });
 </script>
 
 </body>
