@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.sueseisakujo.com/</loc><priority>1.0</priority></url>
-  <url><loc>https://www.sueseisakujo.com/works.html</loc><priority>0.9</priority></url>
-  <url><loc>https://www.sueseisakujo.com/column.html</loc><priority>0.8</priority></url>
-  <url><loc>https://www.sueseisakujo.com/column-kawaii-cablecover.html</loc><priority>0.7</priority></url>
-  <url><loc>https://www.sueseisakujo.com/column-wood-architecture.html</loc><priority>0.7</priority></url>
-  <url><loc>https://www.sueseisakujo.com/shop.html</loc><priority>0.8</priority></url>
-  <url><loc>https://www.sueseisakujo.com/about.html</loc><priority>0.8</priority></url>
-  <url><loc>https://www.sueseisakujo.com/contact.html</loc><priority>0.7</priority></url>
-  <url><loc>https://www.sueseisakujo.com/プリンター.html</loc><priority>0.6</priority></url>
-  <url><loc>https://www.sueseisakujo.com/room-hokusai0607.html</loc><priority>0.6</priority></url>
-  <url><loc>https://www.sueseisakujo.com/room-ac0607.html</loc><priority>0.6</priority></url>
-  <url><loc>https://www.sueseisakujo.com/room-hiddendoor0607.html</loc><priority>0.6</priority></url>
+  <url><loc>https://www.sueseisakujo.com/</loc><priority>1.0</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://www.sueseisakujo.com/works.html</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.sueseisakujo.com/about.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.sueseisakujo.com/contact.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.sueseisakujo.com/column.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.sueseisakujo.com/column-kawaii-cablecover.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.sueseisakujo.com/column-wood-architecture.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.sueseisakujo.com/shop.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.sueseisakujo.com/room-hiddendoor0607.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.sueseisakujo.com/room-hokusai0607.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.sueseisakujo.com/room-ac0607.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.sueseisakujo.com/room-sash0607.html</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.sueseisakujo.com/room-cove0607.html</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
 </urlset>
