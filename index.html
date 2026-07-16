@@ -122,19 +122,6 @@
     .footer-links a:hover { color: #e07044; }
     .footer-copy { font-size: 11px; color: #666; }
 
-    .hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 28px; height: 28px; cursor: pointer; background: none; border: none; padding: 0; touch-action: manipulation; position: relative; z-index: 110; -webkit-tap-highlight-color: transparent; }
-    .hamburger span { display: block; width: 100%; height: 2px; background: #2c2c2c; transition: transform .25s, opacity .25s; }
-    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    .mobile-menu { display: none; position: fixed; top: 0; right: 0; width: 240px; height: 100%; background: #fff; box-shadow: -2px 0 12px rgba(0,0,0,.12); z-index: 999; padding: 70px 0 20px; transform: translateX(100%); transition: transform .25s ease; }
-    .mobile-menu.open { display: block; transform: translateX(0); }
-    .mobile-menu ul { list-style: none; }
-    .mobile-menu a { display: block; padding: 14px 24px; font-size: 13px; color: #444; text-decoration: none; border-bottom: 1px solid #f0f0f0; }
-    .mobile-menu a:hover { color: #e07044; }
-    .menu-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.3); z-index: 998; }
-    .menu-overlay.open { display: block; }
-
     @media (max-width: 720px) {
       nav { padding: 0 16px; }
       .nav-links { display: none; }
@@ -150,6 +137,18 @@
       .hero-credit { left: 16px; bottom: 14px; font-size: 9px; }
       .hero-credit-line { width: 40px; height: 1px; margin-bottom: 6px; }
     }
+    .hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 28px; height: 28px; cursor: pointer; background: none; border: none; padding: 0; }
+    .hamburger span { display: block; width: 100%; height: 2px; background: #2c2c2c; transition: transform .25s, opacity .25s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; top: 0; right: 0; width: 240px; height: 100%; background: #fff; box-shadow: -2px 0 12px rgba(0,0,0,.12); z-index: 999; padding: 70px 0 20px; transform: translateX(100%); transition: transform .25s ease; }
+    .mobile-menu.open { display: block; transform: translateX(0); }
+    .mobile-menu ul { list-style: none; }
+    .mobile-menu a { display: block; padding: 14px 24px; font-size: 13px; color: #444; text-decoration: none; border-bottom: 1px solid #f0f0f0; }
+    .mobile-menu a:hover { color: #e07044; }
+    .menu-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.3); z-index: 998; }
+    .menu-overlay.open { display: block; }
   </style>
 </head>
 <body>
@@ -167,7 +166,7 @@
     <li><a href="contact.html">お問い合わせ</a></li>
     <li><a href="プリンター.html">3Dプリンター製作</a></li>
   </ul>
-  <button class="hamburger" id="hamburgerBtn" type="button" aria-label="メニュー">
+  <button class="hamburger" id="hamburgerBtn" aria-label="メニュー">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -189,37 +188,37 @@
   <img class="hero-img" src="hero-entrance.jpeg" alt="スエ製作所 施工写真" usemap="#heromap">
 
   <a class="hotspot" href="room-cove0607.html"
-     style="left:45.7%; top:3.5%;">
+     style="left:calc(840/1920*100% - 60px); top:calc(108/1080*100% - 16px);">
     <span class="hotspot-label">コーブ照明</span>
     <span class="hotspot-sub">Cove Lighting</span>
   </a>
 
   <a class="hotspot" href="room-hokusai0607.html"
-     style="left:7.5%; top:34.4%;">
+     style="left:0.71%; top:31.6%;">
     <span class="hotspot-label">葛飾北斎「神奈川県沖浪裏」</span>
     <span class="hotspot-sub">3Dプリンター製 組子アート</span>
   </a>
 
   <a class="hotspot" href="room-sash0607.html"
-     style="left:67.7%; top:31.4%;">
+     style="left:63.04%; top:31.41%;">
     <span class="hotspot-label">大開口トリプルサッシ</span>
     <span class="hotspot-sub">Triple-glazed Sliding Door</span>
   </a>
 
   <a class="hotspot" href="room-table0607.html"
-     style="left:35.7%; top:67.4%;">
+     style="left:40.34%; top:64.8%;">
     <span class="hotspot-label">壁一体タイルテーブル</span>
     <span class="hotspot-sub">Built-in Tile Table</span>
   </a>
 
   <a class="hotspot" href="room-desk0607.html"
-     style="left:90.6%; top:65.3%;">
+     style="left:86.98%; top:66.57%;">
     <span class="hotspot-label">柱無しデスク</span>
     <span class="hotspot-sub">Pillar-free Desk</span>
   </a>
 
   <a class="hotspot" href="room-ac0607.html"
-     style="left:7.2%; top:81.7%;">
+     style="left:20.34%; top:75.55%;">
     <span class="hotspot-label">床上エアコン</span>
     <span class="hotspot-sub">Floor-level Air Conditioning</span>
   </a>
@@ -244,34 +243,9 @@
 <section class="section" id="services">
   <div class="section-inner">
     <h2>性能は、数値から。</h2>
-    <p>既存の建物をしっかりとモデリング。現在の性能を評価し、改善点を探る。</p>
+    <p>既存の建物をしっかりと診断。現在の性能を評価し、改善点を探ります。</p>
     <div style="position:relative;aspect-ratio:16/9;margin:28px 0;">
       <iframe src="https://www.youtube.com/embed/B1csPc1JMrw" title="wall statによる検証" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;"></iframe>
-    </div>
-    <h2 style="margin-top:40px;">購入前に、しっかりシミュレーション</h2>
-    <p>既存のモデルをもとに、耐震・断熱レベルが上がるようにプランを作成。</p>
-    <div style="margin-top:24px;">
-      <div class="heat-block">
-        <div class="heat-label">リフォーム前の断熱性能</div>
-        <img src="https://static.wixstatic.com/media/7cabd4_c91a35f02daf46e3a37e7d53364f0ae3~mv2.png" alt="断熱前">
-      </div>
-      <div class="heat-block">
-        <div class="heat-label">リフォーム後の断熱性能（断熱性能がおよそ2倍になっている）</div>
-        <img src="https://static.wixstatic.com/media/7cabd4_c525d78516004f6abfdde491f584c356~mv2.png" alt="断熱後">
-      </div>
-    </div>
-    <h2 style="margin-top:40px;">間取りを変えるだけで、強くなる。</h2>
-    <div class="madori-grid">
-      <div class="madori-item">
-        <div class="madori-tag">リフォーム前</div>
-        <img src="https://static.wixstatic.com/media/7cabd4_505b537f43424cb8b97e0def630521e0~mv2.png" alt="耐震前">
-        <p>あみだくじが複雑。（力の流れ方が複雑）</p>
-      </div>
-      <div class="madori-item">
-        <div class="madori-tag" style="background:#2c2c2c;color:#fff;border-color:#2c2c2c;">リフォーム後</div>
-        <img src="https://static.wixstatic.com/media/7cabd4_c91487cabdca4db79d03470b488b58b3~mv2.png" alt="耐震後">
-        <p>あみだくじがスッキリしている。（力の流れ方がスムーズ）</p>
-      </div>
     </div>
   </div>
 </section>
@@ -335,7 +309,7 @@
           <div style="font-size:12px;color:#888;">詳しく見る →</div>
         </div>
       </a>
-      <a href="works.html" style="background:#fff;text-decoration:none;color:inherit;display:block;display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:200px;">
+      <a href="works.html" style="background:#fff;text-decoration:none;color:inherit;display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:200px;">
         <div style="text-align:center;padding:20px;">
           <div style="font-size:13px;color:#555;margin-bottom:12px;">全ての施工実績を見る</div>
           <div style="font-size:22px;color:#e07044;">→</div>
@@ -360,7 +334,7 @@
       </div>
       <div>
         <p style="font-size:14px;line-height:2.1;color:#666;margin-bottom:24px;">リノベーションの相談、セルフでの施工指導、どんな小さなことでもお気軽にご連絡ください。</p>
-        <a href="mailto:suenaga@sueseisakujo.com?subject=スエ製作所へのお問い合わせ" style="display:block;text-align:center;background:#2c2c2c;color:#fff;padding:13px;font-size:13px;text-decoration:none;letter-spacing:0.06em;transition:background .2s;">✉️ メールで問い合わせる</a>
+        <a href="mailto:suenaga@sueseisakujo.com?subject=スエ製作所へのお問い合わせ" style="display:block;text-align:center;background:#2c2c2c;color:#fff;padding:13px;font-size:13px;text-decoration:none;letter-spacing:0.06em;">✉️ メールで問い合わせる</a>
         <p style="font-size:12px;color:#aaa;margin-top:10px;text-align:center;">タップするとメールアプリが開きます</p>
       </div>
     </div>
